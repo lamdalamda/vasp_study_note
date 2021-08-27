@@ -4,7 +4,7 @@
 
 ## basic concepts
 
-### Hohenberg-Kohn 2nd 1st Theorem :
+### Hohenberg-Kohn 1st Theorem :
 
 The ground-state energy from Schroginger's equation is a unique functional of the electron density.
 
