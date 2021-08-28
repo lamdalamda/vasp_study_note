@@ -1,6 +1,7 @@
 # DFT Theory
  latex test 4
 ## basic concepts 基本概念：如何计算
+摘自David S. Sholl, _Density functional Theory_
 
 ### Hohenberg-Kohn 1st Theorem :
 
@@ -10,12 +11,10 @@ OR
 
 ground state electron density uniquely determines all properties: energy/ wavefunction.
 
-基态能量是电子密度的泛函
-基态电子密度唯一地决定能量、波函数。
+基态能量是电子密度分布函数(或者说，基态电子在空间中的密度分布)的泛函
+一个基态电子密度对应了唯一的能量、波函数。
 
 问题：泛函形式未知
-
-David S. Sholl, _Density functional Theory_
 
 ### Hohenberg-Kohn 2nd Theorem :
 
@@ -143,7 +142,128 @@ Use local electron density and the local gradient in the electron density calcul
 
 主流有：PW91 和 PBE
 
-## 
+## 寻找合适的波函数-hartree fock
+
+泛函在前文已经基本找好了，这里介绍找波函数的过程
+
+当不考虑Exc时候，可以对KohnSham方程进行比较好的计算：
+
+### 单个电子与多电子的波函数
+
+对于单个电子，其波函数是localized的，可以用类似于$y=e^{-x^2}$描述，没有周期性，且在远离x=0的地方y约为0。但是对于晶体等多电子体系，应该使用周期性的波函数，比如$y=sin^2(x)$
+
+### Hartree product
+当总共只有一个电子时候，
+
+$h\Chi=E\Chi$
+
+会得到许多个解 $\Chi_j$
+对于每个解$\Chi_1,\Chi_2,\Chi_3,....$
+(假设$\Chi_1$对应了最低能量)
+对应的能量分别是 $E_1,E_2,E_3,....$,
+
+其中$E_1$是能量最低的基态
+
+对于多个电子体系来说
+
+当忽略了电子-电子相互作用时
+
+Hamiltonian： $H=h_1+h_2+h_3+...$
+
+$h_i$是第i个电子的动能和势能算符
+
+可以得到
+$\phi(x_1,x_2,....x_n)=\prod{\Chi_{ji}}$
+其中j代表了能级（像上面j=1是基态）
+
+对于基态来讲
+$\phi(x_1,x_2,....x_n)=\Chi_{11}(x_1)\Chi_{12}(x_2)\Chi_{13}(x_3)...$
+
+能量则是简单相加
+$E=E_{11},E_{12},E_{13},....$,
+
+以上方法求得的波函数由于忽略了电子-电子相互作用，所以存在以下问题：
+
+_由于电子是费米子，所以当两个电子交换位置时候符号必须改变_
+
+然而，当电子交换位置时候，按照上式，波函数的正负号没有变化
+
+所以：引入Slater determinant
+
+双电子的Slater determinant:
+
+$$\phi(x_1,x_2)=\frac{1}{\sqrt2}det\left\{\begin{matrix}
+\Chi_j(x_1)&\Chi_j(x_2)\\
+\Chi_k(x_1)&\Chi_k(x_2)\\
+\end{matrix}\right\}$$
+
+$$\phi(x_1,x_2)=\frac{1}{\sqrt2}[\Chi_j(x_1)\Chi_k(x_2)-\Chi_k(x_1)\Chi_j(x_2)]$$
+
+这个波函数满足pauli exclusiong principle：不区分电子， 当电子具有相同坐标时等于0
+
+### hartree fock calculation 
+
+hartree fock calculation 基于这个假设；原子核位置固定
+
+
+Kohn sham 方程是
+$[\frac{-\hbar^2}{2m}\nabla^2+V(r)+V_H(r)+V_{XC}(r)]\phi_i(r)=\epsilon_i\phi_i(r)$
+
+而对于**单个**电子,HF calculation是： 
+$[\frac{-\hbar^2}{2m}\nabla^2+V(r)+V_H(r)]\phi_i(x)=\E_j\Chi_j(x)$
+相比于kohn sham减少了一个Exc项
+
+由前面slater行列式可以看到，如果想要描述一个N个电子体系，那么需要知道$\Chi_1$到$\Chi_N$
+
+对此，可以找到有限个（K个）函数，即$\phi_{1}(x)$到$\phi_{K}(x)$，使得这K个函数可以加权相加得到$\Chi_1$到$\Chi_N$
+这K个函数被称为basis set
+即：
+
+$\Chi_j(x)=\sum^K_{i=1}\alpha_{j,i}\phi_{i}(x)$
+
+写的清楚一点，对第一个$\Chi_1(x)$：
+
+$\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_{K}(x)$
+
+现在已知$\phi_{1}(x)$到$\phi_{K}(x)$，问题变成了找到$\alpha_{j,i}$
+
+找到$\alpha_{i,j}$的方式：继续进行递归运算：
+
+1, 猜测一组初始的$\alpha_{j,i}$
+
+2，通过这个初始的$\alpha_{j,i}$计算出来一组n(r)
+
+3, n(r)代回$\Chi_j(x)=\sum^K_{i=1}\alpha_{j,i}\phi_{i}(x)$方程，求解$\alpha_{j,i}$
+
+通过这个递归运算，可以得到一个精确的能量值，这个能量值是Hartree fock limit.
+
+这个值虽然精确，但并不是实际的电子能量， 因为没有考虑到Exc，即Hartree fock方法实际上并没有解决电子-电子相互作用
+
+### DFT计算过程总结
+
+结合上文Kohn sham 方程计算，完整的DFT计算过程如下：
+
+1, 猜测一组初始的$\alpha_{j,i}$
+
+2，通过这个初始的$\alpha_{j,i}$计算出来一组n(r)
+
+3，通过这个n(r) 解kohn sham方程 （或者不精确的Kohn sham方程，这个时候计算的是hartree fock limit），得到每一个电子的波函数
+
+4, 用每一个电子波函数计算n(r)
+
+（通过$n_{(r)} = 2\Sigma \phi_i^*(r)\phi_i(r)$）
+
+5，将n(r)代回$\Chi_j(x)=\sum^K_{i=1}\alpha_{j,i}\phi_{i}(x)$方程，求解$\alpha_{j,i}$
+
+6，得到的$\alpha_{j,i}$代回第二步
+
+### Exc
+
+Electron correlation energy = True system energy - Hartree fock limit.
+
+即Exc就是实际的能量减去Hartree fock limit
+
+
 
 ## reference book 参考书
 
