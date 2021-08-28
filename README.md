@@ -247,7 +247,7 @@ $\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_
 
 2，通过这个初始的$\alpha_{j,i}$计算出来一组n(r)
 
-3，通过这个n(r) 解kohn sham方程 （或者不精确的Kohn sham方程，这个时候计算的是hartree fock limit），得到每一个电子的波函数
+3，通过这个n(r) 解kohn sham方程 （或者不精确的Kohn sham方程，这个时候计算的是hartree fock limitx），得到每一个电子的波函数
 
 4, 用每一个电子波函数计算n(r)
 
