@@ -279,6 +279,227 @@ Electron correlation energy = True system energy - Hartree fock limit.
 即Exc就是实际的能量减去Hartree fock limit
 
 
+## 一些补充
+参考书：Richard M. Martin _Electronic structure: Basic theory and practical method_
+
+## 物质的性质： property of matters
+
+物质属性一般会取决于两个种类：
+1、electronic ground state 基态电子
+2、electronic excited state 激发态电子
+
+原因是；原子核质量远大于电子，因此相对于电子来说可以基本看作静止
+这就是Born-Oppenheimer approximation
+
+电子最低能量态决定了原子核的结构
+the lowest energy state of the elctrons determines the spatial structure of nuclei:
+
+## bonding：
+一般认为分为5类：
+closed shell system:稀有气体
+ionic
+metallic
+covalent
+hydrogen:比较特殊，因为氢原子是唯一没有core electron的 （往上面的氦的core electron是1s的两个电子）
+
+实际材料的bonding一般是这五种的结合
+
+## Hartree atomic units
+
+$\hbar =m_e = e = 4\pi /\epsilon_0 = 1$
+
+定义以上单位为1，用来简化计算
+
+# 晶体学知识 crystallography
+参考书：Richard M. Martin _Electronic structure: Basic theory and practical method_
+
+A crystal can be completely specified by the types and positions of the nuclei in **one repeat unit (primitive unit cell)** annd the rules that describe the **repetition (translation)**
+
+primitive cell有很多种，wigner seitz cell是其中一种
+
+Wigner Seitz cell: the most compact cell that is symmetric about the origin **注意 wigner seitz cell是在real space/实空间** 
+
+wigner seitz cell在倒空间对应的是**first brillouin zone**
+
+_fcc 的 wigner seitz cell是bcc的first brillouin zone_
+
+## fourier transformation
+
+![Image](/Fourier_series_and_transform.gif)
+![Image](/40cf849e55ed95732a60b52d4019d609_720w.jpg)
+_https://zhuanlan.zhihu.com/p/19763358_
+
+
+## reciprocal sapce 倒易空间
+
+考虑任何一个描述晶体性质的方程（比如说电子密度）
+
+由于晶体的周期性，在实空间电子密度是周期性相同的,也就是说对于电子密度$n(r+T(r'))=n(r)$其中T是任何的translation操作
+
+### 一维理解
+
+对于一个一维的，总共三个晶格的晶体，晶格常数为a
+
+---《原子》---a---《原子》---a---《原子》---
+
+那么电子密度n(x)必须满足：
+
+    n(x)    =    n(x+a)       =n(x+2a)  
+         
+当0<x<a
+
+因为n(x)有这样的周期性，所以一定可以对其进行傅里叶变化
+
+傅里叶变化是从x空间变为q空间$n(x)->n(q)$
+
+对于这个长度为3的一维晶体，其中含有3个cell，那么晶格个数N=3
+
+从x空间到q空间的傅里叶变化是
+
+$n(q)=\frac{1}{\Omega_{crystal}}\int_{\Omega_{crystal}} dxn(x)exp(iq·x)$
+
+代入条件
+
+$n(q)=\frac{1}{3a}\int_0^{3a} dxn(x)e^{(iq·x)}$
+
+对于每一个晶格内部进行积分
+
+$n(q)=\frac{1}{3a}(\int_0^adxn(x)e^{iq·x} +\int_a^{2a}dxn(x)e^{iq·x}+\int_{2a}^{3a}dxn(x)e^{iq·x})$
+
+$n(q)=\frac{1}{3a}(\int_0^adxn(x)e^{iq·x} +\int_0^{a}dxn(x+a)e^{iq·(x+a)}+\int_{0}^{a}dxn(x+2a)e^{iq·x+2a})$
+
+由于n(x)周期性n(x)=n(x+a)=n(x+2a)
+
+$n(q)=\frac{1}{3a}(\int_0^adxn(x)e^{iq·x} +\int_0^{a}dxn(x)e^{iq·(x+a)}+\int_{0}^{a}dxn(x)e^{iq·x+2a})$
+
+把exp拆开
+
+$n(q)=\frac{1}{3a}(\int_0^adxn(x)e^{iq·x} +\int_0^{a}dxn(x)e^{iq·x}e^{iq·a}+\int_{0}^{a}dxn(x)e^{iq·x}e^{iq·2a})$
+
+合并得到
+
+$n(q)=\frac{1}{3a}(e^{iq·0a}+e^{iq·a}+e^{iq·2a})(\int_0^adxn(x)e^{iq·x})$
+
+从而得到三维大晶体的一般形式：
+
+$f(q)=\frac{1}{\Omega_{crystal}}\sum_0^{N_xa1}\sum_0^{N_ya2} \sum_0^{N_za3}  e^{iq·T(n1,n2,n3)} \int_0^{a1} \int_0^{a2} \int_0^{a3} dxdydzf(x,y,z) e^{iq·(x,y,z)}$
+
+$f(q)=\frac{1}{\Omega_{crystal}}\sum e^{iq·T} \int drf(r) e^{iq·r}$
+
+T是所有可能的平移（translation）操作
+
+### q需要满足的条件
+
+根据Born-Von Karmen条件，傅里叶变化后的每一个component都必须满足 $exp(i q·Na)=1$
+
+为了满足$exp(iq·3a) =1$，则必须有：
+
+$q·a=2\pi \frac{integer}{3}$
+
+对于大晶体，$q·a=2\pi \frac{integer}{N}$
+
+N是一个很大的值，所以大晶体的q点是连续的
+
+### 倒易矢量的定义
+
+继续对于$q·a=2\pi \frac{integer}{3}$
+
+尝试当interger=1
+
+$q·a=\frac{2\pi}{3}$
+
+$q=\frac{2\pi}{3a}$
+
+$n(q)=\frac{1}{3a}(e^{0}+e^{\frac{i2\pi}{3}}+e^{\frac{i4\pi}{3}})(\int_0^adxn(x)e^{iq·x})$
+
+然而
+
+$e^{0}+e^{\frac{i2\pi}{3}}+e^{\frac{i4\pi}{3}}=0$
+
+所以$n(\frac{2\pi}{3a})=0$
+
+之后发现只有当$q·a=2\pi · integer$时（而非$q·a=2\pi \frac{integer}{3}$）
+
+n(q)才有
+
+$n(q)=\frac{1}{3a}(e^{2\pi}+e^{2\pi}+e^{2\pi})(\int_0^adxn(x)e^{2\pi})$
+
+$n(q)=\frac{1}{3a}(1+1+1)(\int_0^adxn(x)*1)$
+
+也就是说对任意integer
+
+$n(\frac{2\pi · integer}{a})=\frac{1}{a}(\int_0^adxn(x))$
+
+可以说，q具有周期，周期是$q=\frac{2\pi · integer}{a}$
+
+
+
+从而定义单位倒易矢量b=\frac{2\pi}{a}
+
+注意n(q)=n(q+\frac{2\pi}{a})这就是为什么只需要考虑第一布里渊区
+
+
+使n(r)的fourier component 非0的q的集
+合记为G（倒易空间），
+
+$G(m)=m * b$ m为任意正整数
+
+m=0 为基态
+
+**推广到三维大晶体**
+
+
+$n(x+x',y+y',z+z')=n(x,y,z)$，其中x' y' z'是整数倍的$a_1 a_2 a_3$
+
+$a_1 a_2 a_3$是三个晶格向量
+
+傅里叶变化可以对所有有周期性性质的函数使用
+
+因为n(r)有这样的周期性，所以一定可以对其进行傅里叶变化
+
+傅里叶变化是$n(r)->n(q)$
+
+对于一个体积为$\Omega$的三维晶体，其中含有$N_x \times N_y \times N_z = N_{cell}$个cell的体系 
+
+根据Born-Von Karmen条件，傅里叶变化后的每一个component都要满足 $exp(iq· N_x a_1)=exp(iq· N_ya_2)=exp(iq· N_z a_3)=1$
+
+
+
+为了满足$exp(iq· N_x a_1)=exp(iq· N_ya_2)=exp(iq· N_z a_3)=1$，则必须有：
+
+$q·(a_1,a_2,a_3)=2\pi \frac{integer}{N_i}$
+
+从r到q的傅里叶变化是
+
+$f(q)=\frac{1}{N_{cell}\Omega_{cell}}\sum e^{iq·T} \int drf(r) e^{iq·r}$
+
+通过计算，q需要满足的条件从
+$q·(a_1,a_2,a_3)=2\pi \frac{integer}{N_i}$
+
+变为
+
+$q·(a_1,a_2,a_3)=2\pi · integer$
+
+对于满足条件的q的集合记为G，
+$G(m_1,m_2,m_3)=m_1b_1,m_2b_2,m_3b_3$
+
+其中$m_1,m_2,m_3$是任意整数，$b_1,b_2,b_3$是$a_1 a_2 a_3$的倒向量
+
+## 第一布里渊区
+
+第一布里渊区是倒空间的wigner-seitz cell
+
+同样用上面的3a大小的一维晶体距离
+
+注意倒空间是无限长的一维空间,倒空间两个相邻格点之间距离为$b=\frac{2\pi}{a}$
+
+第一布里渊区是
+
+$-\frac{\pi}{a}<q<+\frac{\pi}{a}$
+
+q=0对应了基态
+
+
 
 ## reference book 参考书
 

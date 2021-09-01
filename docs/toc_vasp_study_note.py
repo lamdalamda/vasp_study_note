@@ -63,8 +63,9 @@ def creat_file_with_toc(f):
         print('文件名重复，请修改文件'+'file_with_toc.md'+'的文件名后重试')
 
 if __name__=='__main__':
-    file_name = 'index.md'
+    file_name = './docs/index_no_toc.md'
     #如果未传入文件名
+    '''
     if len(sys.argv) < 2:
         path = os.getcwd()
         file_and_dir = os.listdir(path)
@@ -83,6 +84,7 @@ if __name__=='__main__':
             os._exit(0)
     else:
         file_name = sys.argv[1]
+    '''
     if os.path.exists(file_name) and os.path.isfile(file_name):
         with open(file_name,'r',encoding='utf-8') as f:
             creat_file_with_toc(f)
