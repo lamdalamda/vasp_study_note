@@ -1,24 +1,29 @@
-**Attention注意**
+\documentclass{article}
+\usepackage[UTF8]{ctex}
+\title{Thermodynamics}
+\author{lamda}
+\begin{document}
+
+\section{Attention注意}
 
 每次渲染index.html之后，在<head>部分把原本的stylesheet部分换成以下代码
 
-```markdown
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.css" integrity="sha384-yFRtMMDnQtDRO8rLpMIKrtPCD5jdktao2TV19YiZYWMDkUR5GQZR/NOVTdquEx1j" crossorigin="anonymous">
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/katex.min.js" integrity="sha384-9Nhn55MVVN0/4OFx7EE5kpFBPsEMZxKTCnA+4fqDmg12eCTqGi6+BB2LjY8brQxJ" crossorigin="anonymous"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.2/dist/contrib/auto-render.min.js" integrity="sha384-kWPLUVMOks5AQFrykwIup5lo0m3iMkkHrD0uJ4H5cjeGihAutqP0yW0J6dpFiVkI" crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
-```
 
-_https://katex.org/docs/autorender.html_
 
-# DFT Theory
+https://katex.org/docs/autorender.html
+
+\section{DFT Theory}
  latex test docs index
 
 
-## basic concepts 基本概念：如何计算
+\subsection {basic concepts 基本概念：如何计算}
 摘自David S. Sholl, _Density functional Theory_
 
-### Hohenberg-Kohn 1st Theorem :
+\subsubsection {Hohenberg-Kohn 1st Theorem :}
 
 The ground-state energy from Schroginger's equation is a unique functional of the electron density.
 
@@ -31,7 +36,7 @@ ground state electron density uniquely determines all properties: energy/ wavefu
 
 问题：泛函形式未知
 
-### Hohenberg-Kohn 2nd Theorem :
+\subsubsection {Hohenberg-Kohn 2nd Theorem :}
 
 The electron density that minimizes the energy of the overall functional is the true electron density corresponding to the full solution of the schrodinger equation.
 
@@ -39,7 +44,7 @@ The electron density that minimizes the energy of the overall functional is the 
 
 ->如果知道了泛函的形式，那么就可以计算出基态电子密度
 
-### n(r), 或者基态电子密度
+\subsubsection {n(r), 或者基态电子密度}
 
 基态电子密度　$n_{(r)} = 2\Sigma \phi_i^*(r)\phi_i(r)$
 
@@ -53,7 +58,7 @@ $n_{(x)} = 2\phi_1^*(x)\phi_1(x)+2\phi_2^*(x)\phi_2(x)+2\phi_3^*(x)\phi_3(x)+...
 
 是个期望值一样的东西
 
-### 泛函的具体形式 the energy functional=？
+\subsubsection {泛函的具体形式 the energy functional=？}
 
 对于单个电子已知如下：
 
@@ -89,7 +94,7 @@ $E[]=E_{known}[]+E_{unknown}[]$
 
 问题：解不出来电子密度n(r)因此需要kohn sham 方程解n(r)
 
-### Kohn-Sham equation
+\subsubsection {Kohn-Sham equation}
 
 Kohn-Sham equation是用来找电子密度，即n(r):
 
@@ -115,7 +120,7 @@ $V_{XC}=\frac{\delta E_{XC}(r)}{\delta n(r)} $
 
 $[\frac{-\hbar^2}{2m}\phi_0''(x)+V(x)+e^2\int \frac{n(x')}{|x-x'|}dx'+V_{XC}(x)]\phi_0(x)=\epsilon_0\phi_0(x)$
 
-### 递归求解
+\subsubsection {递归求解}
 
 1\猜测一个 初始电子密度
 
@@ -131,13 +136,13 @@ solve the kohn-sham equation with n(r), get the $\phi(r)$
 
 4\ 调整电子密度递归运算
 
-### 结论：
+\subsubsection {结论：}
 
 通过 Hohenberg-Kohn定理和Kohn-Sham方程，距离比较精确地求解薛定谔方程目前只差一个合适的$E_{XC}$泛函
 
-## 寻找合适的$E_{XC}$泛函
+\subsection{寻找合适的$E_{XC}$泛函}
 
-### LDA近似：计算Exc的一种方式
+\subsubsection {LDA近似：计算Exc的一种方式}
 
 如前文所讲Exc泛函是很难知道形式的。
 
@@ -149,7 +154,7 @@ $V_{XC}(r)=V^{electron gas}_{XC}[n(r)]$
 
 使用LDA近似后，可以精确地解薛定谔方程，但是这个解不是真实解，因为薛定谔方程中的Exc是假的
 
-### GGA
+\subsubsection {GGA}
 
 Use local electron density and the local gradient in the electron density calculation
 
@@ -157,17 +162,17 @@ Use local electron density and the local gradient in the electron density calcul
 
 主流有：PW91 和 PBE
 
-## 寻找合适的波函数-hartree fock
+\subsection {寻找合适的波函数-hartree fock}
 
 泛函在前文已经基本找好了，这里介绍找波函数的过程
 
 当不考虑Exc时候，可以对KohnSham方程进行比较好的计算：
 
-### 单个电子与多电子的波函数
+\subsubsection {单个电子与多电子的波函数}
 
 对于单个电子，其波函数是localized的，可以用类似于$y=e^{-x^2}$描述，没有周期性，且在远离x=0的地方y约为0。但是对于晶体等多电子体系，应该使用周期性的波函数，比如$y=sin^2(x)$
 
-### Hartree product
+\subsubsection {Hartree product}
 当总共只有一个电子时候，
 
 $h\Chi=E\Chi$
@@ -216,7 +221,7 @@ $$\phi(x_1,x_2)=\frac{1}{\sqrt2}[\Chi_j(x_1)\Chi_k(x_2)-\Chi_k(x_1)\Chi_j(x_2)]$
 
 这个波函数满足pauli exclusiong principle：不区分电子， 当电子具有相同坐标时等于0
 
-### hartree fock calculation 
+\subsubsection {hartree fock calculation }
 
 hartree fock calculation 基于这个假设；原子核位置固定
 
@@ -254,7 +259,7 @@ $\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_
 
 这个值虽然精确，但并不是实际的电子能量， 因为没有考虑到Exc，即Hartree fock方法实际上并没有解决电子-电子相互作用
 
-### DFT计算过程总结
+\subsubsection{DFT计算过程总结}
 
 结合上文Kohn sham 方程计算，完整的DFT计算过程如下：
 
@@ -272,17 +277,17 @@ $\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_
 
 6，得到的$\alpha_{j,i}$代回第二步
 
-### Exc
+\subsubsection {Exc}
 
 Electron correlation energy = True system energy - Hartree fock limit.
 
 即Exc就是实际的能量减去Hartree fock limit
 
 
-## 一些补充
+\subsection {一些补充}
 参考书：Richard M. Martin _Electronic structure: Basic theory and practical method_
 
-## 物质的性质： property of matters
+\subsection {物质的性质： property of matters}
 
 物质属性一般会取决于两个种类：
 1、electronic ground state 基态电子
@@ -294,7 +299,7 @@ Electron correlation energy = True system energy - Hartree fock limit.
 电子最低能量态决定了原子核的结构
 the lowest energy state of the elctrons determines the spatial structure of nuclei:
 
-## bonding：
+\subsection {bonding：}
 一般认为分为5类：
 closed shell system:稀有气体
 ionic
@@ -304,7 +309,7 @@ hydrogen:比较特殊，因为氢原子是唯一没有core electron的 （往上
 
 实际材料的bonding一般是这五种的结合
 
-## Hartree atomic units
+\subsection {Hartree atomic units}
 
 $\hbar =m_e = e = 4\pi /\epsilon_0 = 1$
 
@@ -325,20 +330,20 @@ _fcc 的 wigner seitz cell是bcc的first brillouin zone_
 
 
 
-## fourier transformation
+\subsection {fourier transformation}
 
 ![Image](/Fourier_series_and_transform.gif)
 ![Image](/40cf849e55ed95732a60b52d4019d609_720w.jpg)
 _https://zhuanlan.zhihu.com/p/19763358_
 
 
-## reciprocal sapce 倒易空间
+\subsection {reciprocal sapce 倒易空间}
 
 考虑任何一个描述晶体性质的方程（比如说电子密度）
 
 由于晶体的周期性，在实空间电子密度是周期性相同的,也就是说对于电子密度$n(r+T(r'))=n(r)$其中T是任何的translation操作
 
-### 一维理解
+\subsubsection{一维理解}
 
 对于一个一维的，总共三个晶格的晶体，晶格常数为a
 
@@ -390,7 +395,7 @@ $f(q)=\frac{1}{\Omega_{crystal}}\sum e^{iq·T} \int drf(r) e^{iq·r}$
 
 T是所有可能的平移（translation）操作
 
-### q需要满足的条件
+\subsubsection {q需要满足的条件}
 
 根据Born-Von Karmen条件，傅里叶变化后的每一个component都必须满足 $exp(i q·Na)=1$
 
@@ -402,7 +407,7 @@ $q·a=2\pi \frac{integer}{3}$
 
 N是一个很大的值，所以大晶体的q点是连续的
 
-### 倒易矢量的定义
+\subsubsection {倒易矢量的定义}
 
 继续对于$q·a=2\pi \frac{integer}{3}$
 
@@ -488,7 +493,7 @@ $G(m_1,m_2,m_3)=m_1b_1,m_2b_2,m_3b_3$
 
 其中$m_1,m_2,m_3$是任意整数，$b_1,b_2,b_3$是$a_1 a_2 a_3$的倒向量
 
-## 第一布里渊区
+\subsection {第一布里渊区}
 
 第一布里渊区是倒空间的wigner-seitz cell
 
@@ -504,7 +509,7 @@ q=0对应了基态
 
 
 
-## reference book 参考书
+\subsection {reference book 参考书}
 
 David S. Sholl, _Density functional Theory_
 
@@ -513,34 +518,4 @@ Kittel, _solid state physics_
 Dehoff _Thermodynamics_
 
 
-
-
-
-
-```markdown
-Syntax highlighted code block
-
-# Header 1
-## Header 2
-### Header 3
-
-- Bulleted
-- List
-
-1. Numbered
-2. List
-
-**Bold** and _Italic_ and `Code` text
-
-[Link](url) and ![Image](src)
-```
-
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### Jekyll Themes
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lamdalamda/vasp_sudy_note/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### Support or Contact
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
+\end{document}
