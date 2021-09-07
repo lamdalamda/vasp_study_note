@@ -25,15 +25,19 @@
 &emsp;<a href="#23">fourier transformation</a>  
 &emsp;<a href="#24">reciprocal sapce 倒易空间</a>  
 &emsp;&emsp;<a href="#25">一维理解</a>  
-&emsp;&emsp;<a href="#26">q需要满足的条件</a>  
-&emsp;&emsp;<a href="#27">倒易矢量的定义</a>  
-&emsp;<a href="#28">第一布里渊区</a>  
-&emsp;<a href="#29">reference book 参考书</a>  
-<a href="#30">Header 1</a>  
-&emsp;<a href="#31">Header 2</a>  
-&emsp;&emsp;<a href="#32">Header 3</a>  
-&emsp;&emsp;<a href="#33">Jekyll Themes</a>  
-&emsp;&emsp;<a href="#34">Support or Contact</a>  
+&emsp;&emsp;<a href="#26">倒空间的有意义的点q需要满足的条件</a>  
+&emsp;&emsp;<a href="#27">一维小晶体的倒空间与布里渊区</a>  
+&emsp;&emsp;<a href="#28">三维大晶体的倒空间与布里渊区</a>  
+&emsp;&emsp;<a href="#29">推导Block theorem</a>  
+&emsp;<a href="#30">k point取样</a>  
+&emsp;&emsp;<a href="#31">trapezoidal method</a>  
+&emsp;&emsp;<a href="#32">Gaussian quadrature</a>  
+&emsp;<a href="#33">reference book 参考书</a>  
+<a href="#34">Header 1</a>  
+&emsp;<a href="#35">Header 2</a>  
+&emsp;&emsp;<a href="#36">Header 3</a>  
+&emsp;&emsp;<a href="#37">Jekyll Themes</a>  
+&emsp;&emsp;<a href="#38">Support or Contact</a>  
 **Attention注意**
 
 每次渲染index.html之后，在<head>部分把原本的stylesheet部分换成以下代码
@@ -359,10 +363,12 @@ wigner seitz cell在倒空间对应的是**first brillouin zone**
 
 _fcc 的 wigner seitz cell是bcc的first brillouin zone_
 
+
+
 ## <a name="23">fourier transformation</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-![Image](/Fourier_series_and_transform.gif)
-![Image](/40cf849e55ed95732a60b52d4019d609_720w.jpg)
+![Image](./Fourier_series_and_transform.gif)
+![Image](./40cf849e55ed95732a60b52d4019d609_720w.jpg)
 _https://zhuanlan.zhihu.com/p/19763358_
 
 
@@ -424,7 +430,7 @@ $f(q)=\frac{1}{\Omega_{crystal}}\sum e^{iq·T} \int drf(r) e^{iq·r}$
 
 T是所有可能的平移（translation）操作
 
-### <a name="26">q需要满足的条件</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="26">倒空间的有意义的点q需要满足的条件</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 根据Born-Von Karmen条件，傅里叶变化后的每一个component都必须满足 $exp(i q·Na)=1$
 
@@ -432,11 +438,11 @@ T是所有可能的平移（translation）操作
 
 $q·a=2\pi \frac{integer}{3}$
 
-对于大晶体，$q·a=2\pi \frac{integer}{N}$
+对于三维大晶体，$q·a=2\pi \frac{integer}{N}$
 
 N是一个很大的值，所以大晶体的q点是连续的
 
-### <a name="27">倒易矢量的定义</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="27">一维小晶体的倒空间与布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 继续对于$q·a=2\pi \frac{integer}{3}$
 
@@ -462,27 +468,33 @@ $n(q)=\frac{1}{3a}(e^{2\pi}+e^{2\pi}+e^{2\pi})(\int_0^adxn(x)e^{2\pi})$
 
 $n(q)=\frac{1}{3a}(1+1+1)(\int_0^adxn(x)*1)$
 
-也就是说对任意integer
+也就是说，是个非0的fourier component
 
-$n(\frac{2\pi · integer}{a})=\frac{1}{a}(\int_0^adxn(x))$
-
-可以说，q具有周期，周期是$q=\frac{2\pi · integer}{a}$
-
-
-
-从而定义单位倒易矢量b=\frac{2\pi}{a}
-
-注意n(q)=n(q+\frac{2\pi}{a})这就是为什么只需要考虑第一布里渊区
+从而定义单位倒易矢量$b=\frac{2\pi}{a}$
 
 
 使n(r)的fourier component 非0的q的集
 合记为G（倒易空间），
 
-$G(m)=m * b$ m为任意正整数
+$G(m)=m * b$
 
-m=0 为基态
+其中m为任意正整数，且m=0 为基态
 
-**推广到三维大晶体**
+第一布里渊区是倒空间的wigner-seitz cell
+
+同样用上面的3a大小的一维晶体距离
+
+注意倒空间是无限长的一维空间,倒空间两个相邻格点之间距离为$b=\frac{2\pi}{a}$
+
+第一布里渊区是
+
+$-\frac{\pi}{a}<q<+\frac{\pi}{a}$
+
+q=0对应了基态
+
+**注意：这些是基态的条件**
+
+### <a name="28">三维大晶体的倒空间与布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 
 $n(x+x',y+y',z+z')=n(x,y,z)$，其中x' y' z'是整数倍的$a_1 a_2 a_3$
@@ -509,35 +521,122 @@ $q·(a_1,a_2,a_3)=2\pi \frac{integer}{N_i}$
 
 $f(q)=\frac{1}{N_{cell}\Omega_{cell}}\sum e^{iq·T} \int drf(r) e^{iq·r}$
 
-通过计算，q需要满足的条件从
-$q·(a_1,a_2,a_3)=2\pi \frac{integer}{N_i}$
-
-变为
+通过计算，使f(q)非零需要满足的条件是
 
 $q·(a_1,a_2,a_3)=2\pi · integer$
 
-对于满足条件的q的集合记为G，
+从而确立了倒空间的基矢，
 $G(m_1,m_2,m_3)=m_1b_1,m_2b_2,m_3b_3$
 
 其中$m_1,m_2,m_3$是任意整数，$b_1,b_2,b_3$是$a_1 a_2 a_3$的倒向量
 
-## <a name="28">第一布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="29">推导Block theorem</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-第一布里渊区是倒空间的wigner-seitz cell
+根据一通看不懂的证明（P87~P88, section 4.4 Richard M. Martin _Electronic structure: Basic theory and practical method_）
 
-同样用上面的3a大小的一维晶体距离
+继续考虑一维情况，对于一个算符，比如说$\hat{H}$作用在电子波函数上，得到电子能量。$\hat{H}$是算符，$\epsilon$是本征态$\phi(x)$是本征方程
+$\hat{H}\phi(x)=[-\frac{\hbar^2}{2m_e }\nabla^2+V(r)]\phi(x)=\epsilon\phi(x)$
 
-注意倒空间是无限长的一维空间,倒空间两个相邻格点之间距离为$b=\frac{2\pi}{a}$
+类似得，可以定义translation算符$\hat{T_x}$,角标x代表一维的x轴上的translation
 
-第一布里渊区是
+$\hat{T}_{x_0}\phi(x)=\phi(x+x_0)$
 
-$-\frac{\pi}{a}<q<+\frac{\pi}{a}$
+不知道为什么但是hamiltonian $\hat{H}$与$\hat{T_x}$是commute的
 
-q=0对应了基态
+$\hat{H}\hat{T_x}=\hat{T_x}\hat{H}$
+
+由于commute，$\hat{H}$的本征态也是$\hat{T_x}$的本征态
+
+另外由于$\hat{T}_{x_0}\hat{T}_{x_1}=\hat{T}_{x_0+x_1}$
+
+(显然分别挪了x0和x1的操作与一下子挪了x0+x1的操作结果是一样的)
+
+则一定有$$\hat{T}_{x_0+x_1}\phi(x)=\hat{T}_{x_0}\hat{T}_{x_1}\phi(x)=t_{(x_0+x_1)}\phi(x)=(t_{x_0}+t_{x_1})\phi(x)$$
+
+由于如下看不懂的原因：
+**modules of t(x) must be unity 模必须为1？？**
+
+**且本征方程必须满足周期性**
+
+所以t(x)必须有$t(x)=e^{ik·T_x}$格式
+
+其中$T_x$是x轴上移动的距离，$k=\frac{integer\times b}{cell总数}=\frac{2n\pi}{3a}$.其中n是任意整数integer，b是倒易空间单位矢量
+
+由此
+
+$\hat{T}_x\phi(x)=\phi(x+t_x)=e^{ik·T_x}\phi(x)$
+
+具体来讲：
+在之前的晶格常数为a总长度为3的一维晶体里面
+考虑方程（简化掉了hbar）
+$\hat{H}\phi(x)=[-\nabla^2+V(r)]\phi(x)=\epsilon\phi(x)$
+假设基态是$\phi(x)=e^{\frac{i2\pi x}{a}}$
 
 
 
-## <a name="29">reference book 参考书</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+对于translation本身有如下性质
+
+\hat{T_x}
+
+即对于任意的translation操作**T**(即使长度不等于周期)
+
+有$\phi(r+T)=e^{ik·T}\phi(r)$
+
+
+
+激发态下晶体一般不再具有Born-Von Karmen所述的周期性
+
+
+
+## <a name="30">k point取样</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+继续考虑一维情况，已知从x到q有傅里叶变换 
+$n(q)=\frac{1}{\Omega_{crystal}}\int_{\Omega_{crystal}} dxn(x)exp(iq·x)$
+
+那么从q到x也有傅里叶变换**注意：正负号很可能错了，需要以后勘误**
+
+$n(x)=\frac{1}{\Omega_{k space}}\int_{\Omega_{k space}} dqn(q)exp(ix·q)$
+
+虽然不知道n(q)是干什么的，但是n(x)是我们想要求的电子密度
+
+$n(x)=\frac{1}{\Omega_{k space}}\int_{\Omega_{k space}} dqn(q)exp(ix·q)$这个公式中，可以看到想要求的是一个积分。显然积分是很难求的，所以考虑积分的定义
+
+积分可以理解为：函数与x轴（在这个公式里面是与q轴）围出的面积
+
+那么可以将积分用取样点离散化
+
+### <a name="31">trapezoidal method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+trepezoidal 方式拟合积分公式，对区域内进行均匀取样
+$\int _{-1}^1f(x)dx \approx \frac{1}{n}[f(-1)+2\sum_{j=1}^{n-1}f(x_j)+f(1)]$
+
+比如当n=4情况
+
+$\int _{-1}^1f(x)dx \approx 0.25f(-1)+0.25f(-0.5)+0.25f(0)+0.25(0.5)+0.25(1)$
+
+### <a name="32">Gaussian quadrature</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+$\int _{-1}^1f(x)dx \approx 0.25f(-1)+0.25f(-0.5)+0.25f(0)+0.25(0.5)+0.25(1)$可以转为如下公式，此时取样点是不均匀分布的
+
+$\int _{-1}^1f(x)dx \approx \sum_{j=1}^n c_j f(x_j)$
+
+不均匀分布的取样点是Gaussian quadrature，$c_j$是系数，由Gaussian quadrature来规定。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+## <a name="33">reference book 参考书</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 David S. Sholl, _Density functional Theory_
 
@@ -553,9 +652,9 @@ Dehoff _Thermodynamics_
 ```markdown
 Syntax highlighted code block
 
-# <a name="30">Header 1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-## <a name="31">Header 2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-### <a name="32">Header 3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="34">Header 1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="35">Header 2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="36">Header 3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 - Bulleted
 - List
@@ -570,10 +669,10 @@ Syntax highlighted code block
 
 For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
 
-### <a name="33">Jekyll Themes</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="37">Jekyll Themes</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lamdalamda/vasp_sudy_note/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
 
-### <a name="34">Support or Contact</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="38">Support or Contact</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.

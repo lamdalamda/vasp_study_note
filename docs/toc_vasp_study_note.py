@@ -51,7 +51,11 @@ def creat_directory(f):
 """以目录列表为参数生成添加目录的文件"""
 def creat_file_with_toc(f):
     directory = creat_directory(f)
-    file_with_toc = os.getcwd() + '\\index.md'
+    file_with_toc = r"./docs/index.md"
+    if os.path.exists(file_with_toc):
+        is_delete=input("存在index.md，如果删除请直接按回车")
+        if is_delete=="":
+            os.remove(file_with_toc)
     if not os.path.exists(file_with_toc):
         with open(file_with_toc, 'w+',encoding='utf-8') as f:
             for directory_line in directory:
