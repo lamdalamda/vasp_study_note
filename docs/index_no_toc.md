@@ -225,7 +225,7 @@ Kohn sham 方程是
 $[\frac{-\hbar^2}{2m}\nabla^2+V(r)+V_H(r)+V_{XC}(r)]\phi_i(r)=\epsilon_i\phi_i(r)$
 
 而对于**单个**电子,HF calculation是： 
-$[\frac{-\hbar^2}{2m}\nabla^2+V(r)+V_H(r)]\phi_i(x)=\E_j\Chi_j(x)$
+$[\frac{-\hbar^2}{2m}\nabla^2+V(r)+V_H(r)]\phi_i(x)=E_j\Chi_j(x)$
 相比于kohn sham减少了一个Exc项
 
 由前面slater行列式可以看到，如果想要描述一个N个电子体系，那么需要知道$\Chi_1$到$\Chi_N$
