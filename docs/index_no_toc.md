@@ -1,3 +1,8 @@
+本文主要是
+
+
+
+
 **Attention注意**
 
 每次渲染index.html之后，在<head>部分把原本的stylesheet部分换成以下代码
@@ -59,7 +64,7 @@ $n_{(x)} = 2\phi_1^*(x)\phi_1(x)+2\phi_2^*(x)\phi_2(x)+2\phi_3^*(x)\phi_3(x)+...
 
 $E[\phi_i(r)]=E_{known}[\phi_i(r)]+E_{unknown}[\phi_i(r)]$
 
-方括号是泛函的意思。类似于函数，把圆括号变成方括号
+方括号是泛函的意思。泛函类似于函数，函数是输入未知数得到一个结果，或者说数到数的对应。而泛函是输入一个函数得到一个数，或者说函数到数的映射。比如说，一个泛函的形式是从0到1积分，那么输入f(x)=x+1这个函数，得到的是数字1.5。泛函跟函数的表达方式类似，但是把圆括号变成方括号
 $ n(r) -- E[] --> E[n(r)] $
 
 
@@ -294,7 +299,7 @@ Electron correlation energy = True system energy - Hartree fock limit.
 电子最低能量态决定了原子核的结构
 the lowest energy state of the elctrons determines the spatial structure of nuclei:
 
-## bonding：
+### bonding：
 一般认为分为5类：
 closed shell system:稀有气体
 ionic
@@ -304,13 +309,14 @@ hydrogen:比较特殊，因为氢原子是唯一没有core electron的 （往上
 
 实际材料的bonding一般是这五种的结合
 
-## Hartree atomic units
+### Hartree atomic units
 
 $\hbar =m_e = e = 4\pi /\epsilon_0 = 1$
 
 定义以上单位为1，用来简化计算
 
 # 晶体学知识 crystallography
+
 参考书：Richard M. Martin _Electronic structure: Basic theory and practical method_
 
 A crystal can be completely specified by the types and positions of the nuclei in **one repeat unit (primitive unit cell)** annd the rules that describe the **repetition (translation)**
@@ -328,8 +334,9 @@ _fcc 的 wigner seitz cell是bcc的first brillouin zone_
 ## fourier transformation
 
 ![Image](./Fourier_series_and_transform.gif)
+转载自 wikipedia
 ![Image](./40cf849e55ed95732a60b52d4019d609_720w.jpg)
-_https://zhuanlan.zhihu.com/p/19763358_
+转载自_https://zhuanlan.zhihu.com/p/19763358_，这个讲的很清楚
 
 
 ## reciprocal sapce 倒易空间
@@ -343,6 +350,8 @@ _https://zhuanlan.zhihu.com/p/19763358_
 对于一个一维的，总共三个晶格的晶体，晶格常数为a
 
 ---《原子》---a---《原子》---a---《原子》---
+
+![Image](./pic/pic1.jpg)
 
 那么电子密度n(x)必须满足：
 
@@ -471,8 +480,6 @@ $a_1 a_2 a_3$是三个晶格向量
 
 根据Born-Von Karmen条件，傅里叶变化后的每一个component都要满足 $exp(iq· N_x a_1)=exp(iq· N_ya_2)=exp(iq· N_z a_3)=1$
 
-
-
 为了满足$exp(iq· N_x a_1)=exp(iq· N_ya_2)=exp(iq· N_z a_3)=1$，则必须有：
 
 $q·(a_1,a_2,a_3)=2\pi \frac{integer}{N_i}$
@@ -490,7 +497,9 @@ $G(m_1,m_2,m_3)=m_1b_1,m_2b_2,m_3b_3$
 
 其中$m_1,m_2,m_3$是任意整数，$b_1,b_2,b_3$是$a_1 a_2 a_3$的倒向量
 
-### 推导Block theorem
+## bloch theorem的推导
+
+### bloch theorem第一种证明
 
 根据一通看不懂的证明（P87~P88, section 4.4 Richard M. Martin _Electronic structure: Basic theory and practical method_）
 
@@ -511,42 +520,175 @@ $\hat{H}\hat{T_x}=\hat{T_x}\hat{H}$
 
 (显然分别挪了x0和x1的操作与一下子挪了x0+x1的操作结果是一样的)
 
-则一定有$$\hat{T}_{x_0+x_1}\phi(x)=\hat{T}_{x_0}\hat{T}_{x_1}\phi(x)=t_{(x_0+x_1)}\phi(x)=(t_{x_0}+t_{x_1})\phi(x)$$
+则一定有$\hat{T}_{x_0+x_1}\phi(x)=\hat{T}_{x_0}\hat{T}_{x_1}\phi(x)=t_{(x_0+x_1)}\phi(x)=(t_{x_0}+t_{x_1})\phi(x)$
 
 由于如下看不懂的原因：
 **modules of t(x) must be unity 模必须为1？？**
 
 **且本征方程必须满足周期性**
 
-所以t(x)必须有$t(x)=e^{ik·T_x}$格式
+所以**t(x)必须有$t(x)=e^{ik·T_x}$格式**
 
 其中$T_x$是x轴上移动的距离，$k=\frac{integer\times b}{cell总数}=\frac{2n\pi}{3a}$.其中n是任意整数integer，b是倒易空间单位矢量
 
-由此
+由此有bloch theorem：
 
-$\hat{T}_x\phi(x)=\phi(x+t_x)=e^{ik·T_x}\phi(x)$
-
-具体来讲：
-在之前的晶格常数为a总长度为3的一维晶体里面
-考虑方程（简化掉了hbar）
-$\hat{H}\phi(x)=[-\nabla^2+V(r)]\phi(x)=\epsilon\phi(x)$
-假设基态是$\phi(x)=e^{\frac{i2\pi x}{a}}$
+**$\hat{T}_x\phi(x)=\phi(x+t_x)=e^{ik·T_x}\phi(x)$**
 
 
 
-对于translation本身有如下性质
+### bloch theorem的第二种证明
 
-\hat{T_x}
+继续在之前的晶格常数为a总长度为3的一维晶体例子 
 
-即对于任意的translation操作**T**(即使长度不等于周期)
+由于势能一定具有晶格的周期性，晶格的周期性是整数倍的晶格常数，根据前面的Born-Von Karmen条件，一定可以将V(x)进行从x空间变换到k空间的傅里叶变换，变成成如下形式
 
-有$\phi(r+T)=e^{ik·T}\phi(r)$
+$V(x)=\sum _K v_K e^{iKx}$其中$v_K$是系数,K是所有的倒易空间矢量（整数倍的$\frac{2\pi}{a}$）
+
+这个变换是正确的，因为V(x)保留了周期性且周期性为a（晶格常数），有如下证明$V(x+a)=\sum _K v_K e^{iK(x+a)}=\sum _K v_K e^{i\frac{2n\pi}{a}(x+a)}=\sum _K v_K e^{i\frac{2n\pi}{a}x}e^{i\frac{2n\pi}{a}a}=\sum _K v_K e^{i\frac{2n\pi}{a}x}*1=V(x)$
+
+傅里叶变换中的系数$v_K=\frac 1v \int_{cell} dxe^{-iKx}V(x)$
+在此一维晶体$v_K=\frac{1}{a} \int_{0}^{a} dxe^{-iKx}V(x)$
+
+取决于参照对象，势能是可以整体上升或者下降的（考虑同一高度对于1、地面和2、珠穆朗玛峰 的重力势能），为了计算方便要求$v_0=0$
+
+也就是说$v_0=\frac{1}{a} \int_{0}^{a} dxe^{-i*0*x}V(x)=\frac{1}{a} \int_{0}^{a} V(x)dx$
+
+由于V(x)是实数方程，要求有$v_K=v_{-K}=v_K*$
+
+由于电子在接近原子核处势能高，离开原子核处势能低，而且势能是周期性的
+
+非常粗浅地假设势能是cos形式 $V(x)=-cos\frac{2\pi x}{a}$
+
+![Image](./pic/pic1.jpg)
+
+此时可以得到V(x)有精确的傅里叶展开是（对于其他一般的V(x)可能难以得到精确展开）
+
+$V(x)=-cos\frac{2\pi x}{a}=-(0.5cos\frac{2\pi x}{a}+0.5isin\frac{2\pi x}{a})-(0.5cos\frac{2\pi x}{a}-0.5isin\frac{2\pi x}{a})=-0.5e^{\frac{i2\pi}{a}x}-0.5e^{\frac{-i2\pi}{a}x}$
+
+也就是说当$K=2\pi/a以及K=-2\pi/a$ 时$v_k=-0.5$，对其他K值$v_k=0$
+
+根据前面的Born-Von Karmen条件，也可以将单电子波函数（本征方程）进行类似的变换。注意波函数本身未必具有周期性，所以只是普通的傅里叶展开.$c_q$是每个展开的系数
+
+$\phi(x)=\sum _q c_qe^{iqx}$
+
+将以上代入薛定谔方程得到
+
+有$\hat{H}\sum_q c_qe^{iqx}=[-\hbar^2 \nabla^2 /2m + (-0.5e^{\frac{i2\pi}{a}x}-0.5e^{\frac{-i2\pi}{a}x})]\sum_q c_qe^{iqx}$
+
+$=\frac{\hbar^2}{2m} \sum _q q^2c_qe^{iqx}+ \sum_q -0.5c_qe^{i(q+\frac{2\pi}{a})x} + \sum_q -0.5c_qe^{i(q+\frac{-2\pi}{a})x}=\epsilon \sum _q c_qe^{iqx}$
+
+由于一个不知道的原因（需要后面再进行理解，或许是因为傅里叶展开的q是从负无穷到正无穷所以无所谓？）
+$\sum_q -0.5c_qe^{i(q+\frac{2\pi}{a})x} =\sum_{q'}-0.5c_{q'-\frac{2\pi}{a}}e^{iq'r}=\sum_q-0.5c_{q-\frac{2\pi}{a}}e^{iqr}$
+$\sum_q -0.5c_qe^{i(q+\frac{-2\pi}{a})x} =\sum_{q'}-0.5c_{q'-\frac{-2\pi}{a}}e^{iq'r}=\sum_q-0.5c_{q-\frac{-2\pi}{a}}e^{iqr}$
+
+代入上式
+
+$\frac{\hbar^2}{2m} \sum _q q^2c_qe^{iqx}+ \sum_q -0.5c_qe^{i(q+\frac{2\pi}{a})x} + \sum_q -0.5c_qe^{i(q+\frac{-2\pi}{a})x}=\epsilon \sum _q c_qe^{iqx}$
+$\frac{\hbar^2}{2m} \sum _q q^2c_qe^{iqx}+ \sum_q-0.5c_{q-\frac{2\pi}{a}}e^{iqr} + \sum_q-0.5c_{q-\frac{-2\pi}{a}}e^{iqr}=\epsilon \sum _q c_qe^{iqx}$
+$\sum _q e^{iqx}[(\frac{\hbar^2}{2m}q^2-\epsilon)c_q+(-0.5c_{q-\frac{2\pi}{a}})+(-0.5c_{q-\frac{-2\pi}{a}})]=0$
+
+最后得到了动量空间的薛定谔方程，形式如下
+$(\frac{\hbar^2}{2m}q^2-\epsilon)c_q+(-0.5c_{q-\frac{2\pi}{a}})+(-0.5c_{q-\frac{-2\pi}{a}})=0$
+
+其一般形式为
+**$(\frac{\hbar^2}{2m}q^2-\epsilon)c_q+\sum_{K'}v_{K'}c_{q-K}=0$**
 
 
+$c_q$是单电子波函数傅里叶变换的展开项系数，是未知的，q可以取的值是倒易矢量或者说整数倍的$\frac{2\pi}{a}$。对于每一个倒易矢量q，这个动量空间薛定谔方程都（大概）是可解的，得到了每个q对应的$c_q$值，从而获得单电子波函数在空间的表达形式$\phi(x)=\sum _q c_qe^{iqx}$
 
-激发态下晶体一般不再具有Born-Von Karmen所述的周期性
+如果把q取值范围限定成这样的一系列点的集合：$q_k \in [k+K\times \frac{2\pi}{a},k是第一布里渊区中的一个有效点,K是对所有整数遍历]$，比如说$q_\frac{2\pi}{3a} \in  [\frac{2\pi}{3a}, \frac{2\pi}{a}+\frac{2\pi}{3a},\frac{4\pi}{a}+\frac{2\pi}{3a},\frac{6\pi}{a}+\frac{2\pi}{3a},.......]$
 
+把这个限制条件代入$\phi(x)=\sum _q c_qe^{iqx}$
 
+可以得到限定条件中规定的点k所对应的单电子波函数，即
+
+$\phi(x,k)=\sum _{q_k} c_{q_k}e^{iq_kx}$
+
+将$q_k$限定条件代入可以写作如下格式
+
+$\phi(x,k)=\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(k+K\times \frac{2\pi}{a})x}$
+
+例如
+
+$\phi(x,\frac{2\pi}{3a})=c_{\frac{2\pi}{3a}} e^{i(\frac{2\pi}{3a})x}+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{2\pi}{a})x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{4\pi}{a})x}+....$
+
+提取公因数
+
+$\phi(x,\frac{2\pi}{3a})=c_{\frac{2\pi}{3a}} e^{i(\frac{2\pi}{3a})x}+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}} e^{i(\frac{2\pi}{3a})x}e^{\frac{2\pi}{a}x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}} e^{i(\frac{2\pi}{3a})x}e^{\frac{4\pi}{a}x}+....$
+
+整理得到
+
+$\phi(x,\frac{2\pi}{3a})=e^{i(\frac{2\pi}{3a})x}[c_{\frac{2\pi}{3a}} e^{i*0*x}+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}}e^{\frac{2\pi}{a}x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}}e^{\frac{4\pi}{a}x}+....]$
+
+也就是说
+
+$\phi(x,k)=e^{ikx}\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(K\times \frac{2\pi}{a})x}$
+
+令$u(x,k)=\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(K\times \frac{2\pi}{a})x}$
+
+可以看到$u(x,k)$是一种傅里叶展开的形式，而且注意到$e^{i(K\times \frac{2\pi}{a})x}$，这项说明u(x,k)在x轴上具有周期性，且周期性为晶格常数a，与势能的周期性相同
+
+这样得到了bloch theorem第二种说法是：
+**对于单电子的hamiltonian $\hat{H}=[-\hbar^2 \nabla^2 /2m + V(r)]$,其中V（r）为势能项且具有布拉维晶格的周期性。这个Hamiltonian的本征方程可以被如下的形式写出：(或者说，单电子波函数具有如下性质)**
+
+**$\phi(x,k)=e^{ikx}u(x,k)$**
+
+继续假设$u(x,k)=sin(x)$或者具有类似形式（显然并不是的，因为u(x,k)估计是个复函数）
+
+根据前面的Born-Von Karmen条件，
+
+$k=2\pi \frac{integer}{a}$
+
+则对于k=0
+
+单电子波函数为$\phi(x,0)=e^{i*0*x}u(x,k)$
+
+下一个是$k=\frac{2\pi}{3a}$
+
+即$k=\frac{2\pi}{3a}$对应的单电子波函数是
+$\phi(x,\frac{2\pi}{3a})=e^{i\frac{2\pi x}{3a}}sin(x)$
+
+再下一个$k=\frac{4\pi}{3a}$时注意第一布里渊区是$\frac{-\pi}{a}<k<\frac{\pi}{a}$,此时已经超过了第一布里渊区
+
+$\phi(x,\frac{4\pi}{3a})=e^{i\frac{4\pi x}{3a}}sin(x)$
+
+$k=\frac{2\pi}{a}$
+
+$\phi(x,\frac{2\pi}{a})=e^{i\frac{2\pi x}{a}}sin(x)$
+
+画出来是这样的
+
+![Image](./pic/pic2.jpg)
+
+对于bloch theorem 的 $\phi(x,k)=e^{ikx}u(x,k)$形式，求其能量
+
+有$\hat{H}\phi(x,k)=[-\hbar^2 \nabla^2 /2m + V(r)]\phi(x,k)$
+
+将$\phi(x,k)=e^{ikx}u(x,k)$代入
+
+$\hat{H}e^{ikx}u(x,k)=\frac{-\hbar^2}{2m} \frac{d^2e^{ikx}u(x,k)}{dx^2} + V(r)e^{ikx}u(x,k)$
+
+$\hat{H}e^{ikx}u(x,k)=\frac{-\hbar^2}{2m} \frac{d[ike^{ikx}u(x,k)+e^{ikx}u'(x,k)]}{dx} + V(r)e^{ikx}u(x,k)$
+
+$\hat{H}e^{ikx}u(x,k)=\frac{-\hbar^2}{2m}[ -k^2e^{ikx}u(x,k)+ike^{ikx}u'(x,k)+ike^{ikx}u'(x,k)+e^{ikx}u''(x,k)] + V(r)e^{ikx}u(x,k)$
+
+**得到$\hat{H}u(x,k)=\frac{-\hbar^2}{2m}[ -k^2u(x,k)+2iku'(x,k)+u''(x,k)] + V(r)u(x,k)=\epsilon _ku(x,k)$**
+
+从里面抽出来Hamiltonian$\hat{H}=\frac{-\hbar^2}{2m} (\frac 1i \nabla+k)^2  + V(r)$
+
+前面限定了k是在第一布里渊区，但是即使k不再局限于第一布里渊区，依旧能够在第一布里渊区找到与其完全相同的对应关系
+
+$\phi(x,\frac{2\pi}{a}+\frac{2\pi}{3a})=...+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{2\pi}{a})x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{4\pi}{a})x}+...=...+c_{\frac{2\pi}{3a}} e^{i(\frac{2\pi}{3a})x}+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{2\pi}{a})x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{4\pi}{a})x}+.....=\phi(x,\frac{2\pi}{3a})$
+
+也就是说$\phi(x,k)$在k空间也有周期性，周期性为单位倒易矢量，或者说，具有如下性质(添加的这个n是能级)
+
+$\phi(x,n,k)=\phi(x,n,k+K*\frac{2\pi}{a})$
+
+这就使得其本征值（能量）以及block theorem中的u(x,k)同样具有这个性质
+
+$\epsilon(n,k)=\epsilon(n,k+K*\frac{2\pi}{a})$
+$u(x,k)=u(x,k+K*\frac{2\pi}{a})$
 
 ## k point取样
 
