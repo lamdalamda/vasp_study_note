@@ -31,15 +31,29 @@
 &emsp;<a href="#29">bloch theorem的推导</a>  
 &emsp;&emsp;<a href="#30">bloch theorem第一种证明</a>  
 &emsp;&emsp;<a href="#31">bloch theorem的第二种证明</a>  
-&emsp;<a href="#32">k point取样</a>  
-&emsp;&emsp;<a href="#33">trapezoidal method</a>  
-&emsp;&emsp;<a href="#34">Gaussian quadrature</a>  
-&emsp;<a href="#35">reference book 参考书</a>  
-<a href="#36">Header 1</a>  
-&emsp;<a href="#37">Header 2</a>  
-&emsp;&emsp;<a href="#38">Header 3</a>  
-&emsp;&emsp;<a href="#39">Jekyll Themes</a>  
-&emsp;&emsp;<a href="#40">Support or Contact</a>  
+&emsp;&emsp;&emsp;<a href="#32">block theorem单电子波函数的本征值和周期性</a>  
+&emsp;<a href="#33">k point取样</a>  
+&emsp;&emsp;<a href="#34">trapezoidal method</a>  
+&emsp;&emsp;<a href="#35">Gaussian quadrature</a>  
+<a href="#36">Hubbard model</a>  
+&emsp;<a href="#37">DFT+U</a>  
+&emsp;&emsp;<a href="#38">U参数计算方式</a>  
+&emsp;&emsp;<a href="#39">U parameter meaning(translated)</a>  
+<a href="#40">DFT 实践</a>  
+&emsp;<a href="#41">压缩模量 bulk modulus</a>  
+&emsp;<a href="#42">分析表面-slab models</a>  
+&emsp;<a href="#43">kpoint的数量</a>  
+&emsp;<a href="#44">energy cutoff</a>  
+&emsp;&emsp;<a href="#45">hard and soft psudopotential</a>  
+&emsp;<a href="#46">optimization method</a>  
+&emsp;&emsp;<a href="#47">bisection method </a>  
+&emsp;&emsp;<a href="#48">newton method</a>  
+&emsp;&emsp;<a href="#49">quasi-newton method</a>  
+&emsp;&emsp;<a href="#50">conjugate-gradient method/steepest descent method</a>  
+<a href="#51">reference book 参考书</a>  
+<a href="#52">Header 1</a>  
+&emsp;<a href="#53">Header 2</a>  
+&emsp;&emsp;<a href="#54">Header 3</a>  
 本文主要是
 
 
@@ -117,21 +131,21 @@ $E_{unknown}[]$是未知的能量泛函：交换能
 
 其中
 
-$E_{known}[\phi_i(r)]=\frac{-\hbar}{m}\Sigma\int\phi_i^*(r)\nabla^2\phi_i(r)d^3r+\int V(r)n(r)d^3r+e^2/2\int \int \frac {n(r)n(r')}{|r-r'|}d^3rd^3r'+E_{ion} $
+$E_{known}[\phi_i(r)]=\frac{-\hbar}{m}\Sigma\int\phi_i^*(r)\nabla^2\phi_i(r)d^3r+\int V(r)n(r)d^3r+e^2/2\int \int \frac {n(r)n(r')}{|r-r'|}d^3rd^3r'+E_{ion}$
 
 缩成一维，对于0号电子$\phi_0$
 
-$E_{known}[\phi_0(x)]=\frac{-\hbar}{m}\Sigma\int\phi_0^*(x)\phi_i''(x)dx+\int V(x)n(x)dx+e^2/2\int \int \frac {n(x)n(x')}{|x-x'|}dxdx'+E_{ion} $
+$E_{known}[\phi_0(x)]=\frac{-\hbar}{m}\Sigma\int\phi_0^*(x)\phi_0''(x)dx+\int V(x)n(x)dx+e^2/2\int \int \frac {n(x)n(x')}{|x-x'|}dxdx'+E_{ion}$
 
 （不太清楚为什么会有一个求和）
 
 由于前述$n_{(r)} = 2\Sigma \phi_i^*(r)\phi_i(r)$
 
-所以虽然不知道是否合理，但是推导出来这个公式，即phi和n（r）有同样的泛函？？
+所以虽然不知道是否合理，但是推导出来这个公式，即phi（波函数）和n（r）（电子密度）有同样的泛函
 
 $E[2\Sigma \phi_i^*(r)\phi_i(r)]=E_{known}[2\Sigma \phi_i^*(r)\phi_i(r)]+E_{unknown}[2\Sigma \phi_i^*(r)\phi_i(r)]$
 
-也就是说泛函的形式是 
+也就是说电子密度的泛函的形式与博函数相同，是： 
 $E[]=E_{known}[]+E_{unknown}[]$
 
 问题：解不出来电子密度n(r)因此需要kohn sham 方程解n(r)
@@ -154,7 +168,7 @@ $V_H(r)=e^2\int \frac{n(r')}{|r-r'|}d^3r'$
 理解为以r点的坐标向外积分？
 
 $V_{XC}$是未知的，虽然有
-$V_{XC}=\frac{\delta E_{XC}(r)}{\delta n(r)} $
+$V_{XC}=\frac{\delta E_{XC}(r)}{\delta n(r)}$
 
 用人能看懂的方法重新写
 
@@ -164,6 +178,7 @@ $[\frac{-\hbar^2}{2m}\phi_0''(x)+V(x)+e^2\int \frac{n(x')}{|x-x'|}dx'+V_{XC}(x)]
 
 ### <a name="7">递归求解</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
+如果不考虑Vxc这个未知项目（直接删掉这个项），那么其余部分是可以通过递归来进行精确求解的：
 1\猜测一个 初始电子密度
 
 guess a initial trial electron density n(r)
@@ -309,7 +324,7 @@ $\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_
 
 2，通过这个初始的$\alpha_{j,i}$计算出来一组n(r)
 
-3，通过这个n(r) 解kohn sham方程 （或者不精确的Kohn sham方程，这个时候计算的是hartree fock limitx），得到每一个电子的波函数
+3，通过这个n(r) 解kohn sham方程 （或者不含Exc的Kohn sham方程，这个时候计算的是hartree fock limitx），得到每一个电子的波函数
 
 4, 用每一个电子波函数计算n(r)
 
@@ -604,7 +619,7 @@ $V(x)=\sum _K v_K e^{iKx}$其中$v_K$是系数,K是所有的倒易空间矢量�
 
 ![Image](./pic/pic1.jpg)
 
-此时可以得到V(x)有精确的傅里叶展开是（对于其他一般的V(x)可能难以得到精确展开）
+此时可以得到V(x)有精确的傅里叶展开是（对于其他一般的V(x)难以得到精确展开，只是举个例子）
 
 $V(x)=-cos\frac{2\pi x}{a}=-(0.5cos\frac{2\pi x}{a}+0.5isin\frac{2\pi x}{a})-(0.5cos\frac{2\pi x}{a}-0.5isin\frac{2\pi x}{a})=-0.5e^{\frac{i2\pi}{a}x}-0.5e^{\frac{-i2\pi}{a}x}$
 
@@ -633,13 +648,13 @@ $\sum _q e^{iqx}[(\frac{\hbar^2}{2m}q^2-\epsilon)c_q+(-0.5c_{q-\frac{2\pi}{a}})+
 最后得到了动量空间的薛定谔方程，形式如下
 $(\frac{\hbar^2}{2m}q^2-\epsilon)c_q+(-0.5c_{q-\frac{2\pi}{a}})+(-0.5c_{q-\frac{-2\pi}{a}})=0$
 
-其一般形式为
+对于任意的V(x),薛定谔方程的一般形式为
 **$(\frac{\hbar^2}{2m}q^2-\epsilon)c_q+\sum_{K'}v_{K'}c_{q-K}=0$**
 
 
-$c_q$是单电子波函数傅里叶变换的展开项系数，是未知的，q可以取的值是倒易矢量或者说整数倍的$\frac{2\pi}{a}$。对于每一个倒易矢量q，这个动量空间薛定谔方程都（大概）是可解的，得到了每个q对应的$c_q$值，从而获得单电子波函数在空间的表达形式$\phi(x)=\sum _q c_qe^{iqx}$
+$c_q$是单电子波函数傅里叶变换的展开项系数，是未知量，q在这里是自变量，是倒易空间中的倒易矢量（任意分数/整数倍的$\frac{2\pi}{a}$）。对于每一个倒易矢量q，这个动量空间薛定谔方程都（大概）是可解的，得到了每个q对应的$c_q$值，从而获得单电子波函数在空间的比较严格的表达形式$\Phi(x)=\sum _q c_qe^{iqx}$。此式也被称为wannier functions
 
-如果把q取值范围限定成这样的一系列点的集合：$q_k \in [k+K\times \frac{2\pi}{a},k是第一布里渊区中的一个有效点,K是对所有整数遍历]$，比如说$q_\frac{2\pi}{3a} \in  [\frac{2\pi}{3a}, \frac{2\pi}{a}+\frac{2\pi}{3a},\frac{4\pi}{a}+\frac{2\pi}{3a},\frac{6\pi}{a}+\frac{2\pi}{3a},.......]$
+显然倒空间的q有无限多个，计算上面是不可能实现的。所以只取一部分的q点进行计算。vasp的k point就是用来定义取的q点，也就是说，如果把q取值范围限定成这样的一系列点的集合：$q_k \in [k+K,k是第一布里渊区中的一个有效点,K是整数倍的 \frac{2\pi}{a}]$，比如说$q_\frac{2\pi}{3a} \in  [\frac{2\pi}{3a}, \frac{2\pi}{a}+\frac{2\pi}{3a},\frac{4\pi}{a}+\frac{2\pi}{3a},\frac{6\pi}{a}+\frac{2\pi}{3a},.......]$
 
 把这个限制条件代入$\phi(x)=\sum _q c_qe^{iqx}$
 
@@ -649,7 +664,7 @@ $\phi(x,k)=\sum _{q_k} c_{q_k}e^{iq_kx}$
 
 将$q_k$限定条件代入可以写作如下格式
 
-$\phi(x,k)=\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(k+K\times \frac{2\pi}{a})x}$
+$\phi(x,k)=\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(k+K)x}$
 
 例如
 
@@ -665,22 +680,25 @@ $\phi(x,\frac{2\pi}{3a})=e^{i(\frac{2\pi}{3a})x}[c_{\frac{2\pi}{3a}} e^{i*0*x}+c
 
 也就是说
 
-$\phi(x,k)=e^{ikx}\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(K\times \frac{2\pi}{a})x}$
+$\phi(x,k)=e^{ikx}\sum _K c_{k+K} e^{iKx}$
 
-令$u(x,k)=\sum _K c_{k+K\times \frac{2\pi}{a}} e^{i(K\times \frac{2\pi}{a})x}$
+令$u(x,k)=\sum _K c_{k+K} e^{iKx}$
 
-可以看到$u(x,k)$是一种傅里叶展开的形式，而且注意到$e^{i(K\times \frac{2\pi}{a})x}$，这项说明u(x,k)在x轴上具有周期性，且周期性为晶格常数a，与势能的周期性相同
+可以看到$u(x,k)$是一种傅里叶展开的形式，而且$e^{iKx}$项说明u(x,k)在x轴上具有周期性，且周期性为晶格常数a，与势能的周期性相同
 
 这样得到了bloch theorem第二种说法是：
-**对于单电子的hamiltonian $\hat{H}=[-\hbar^2 \nabla^2 /2m + V(r)]$,其中V（r）为势能项且具有布拉维晶格的周期性。这个Hamiltonian的本征方程可以被如下的形式写出：(或者说，单电子波函数具有如下性质)**
+**对于单电子的hamiltonian $\hat{H}=[-\hbar^2 \nabla^2 /2m + V(r)]$,若其中V（r）为势能项且具有布拉维晶格的周期性，则这个Hamiltonian的本征方程一定可以被如下的形式写出：**
 
 **$\phi(x,k)=e^{ikx}u(x,k)$**
 
-继续假设$u(x,k)=sin(x)$或者具有类似形式（显然并不是的，因为u(x,k)估计是个复函数）
+**需要注意：本征方程可以如此写出，但是这个本征方程并不一定代表单电子波函数的方程，这个方程仅代表单电子在点k所对应的波函数。而完整单电子波函数方程是wannier function：$\Phi(x)=\sum _{brillouin zone} c_qe^{iqx}$。**
+
+
+继续假设$u(x,k)=sin(x)$或者具有类似形式（显然并不是的，因为u(x,k)估计是个复函数，只是为了画图）
 
 根据前面的Born-Von Karmen条件，
 
-$k=2\pi \frac{integer}{a}$
+$k=2\pi \frac{integer}{N_{cell}a}$
 
 则对于k=0
 
@@ -699,9 +717,12 @@ $k=\frac{2\pi}{a}$
 
 $\phi(x,\frac{2\pi}{a})=e^{i\frac{2\pi x}{a}}sin(x)$
 
-画出来是这样的
+画出来是这样的。这里看起来不太合理，但是一定注意u(x)本身是个复函数，而且前提假设“晶体只有三个原子”本身并不成立。这个图只为了显示大概的形式
 
 ![Image](./pic/pic2.jpg)
+
+#### <a name="32">block theorem单电子波函数的本征值和周期性</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
 
 对于bloch theorem 的 $\phi(x,k)=e^{ikx}u(x,k)$形式，求其能量
 
@@ -719,20 +740,22 @@ $\hat{H}e^{ikx}u(x,k)=\frac{-\hbar^2}{2m}[ -k^2e^{ikx}u(x,k)+ike^{ikx}u'(x,k)+ik
 
 从里面抽出来Hamiltonian$\hat{H}=\frac{-\hbar^2}{2m} (\frac 1i \nabla+k)^2  + V(r)$
 
-前面限定了k是在第一布里渊区，但是即使k不再局限于第一布里渊区，依旧能够在第一布里渊区找到与其完全相同的对应关系
+前面限定了k是在第一布里渊区，但是即使k不再局限于第一布里渊区，显然依旧能够在第一布里渊区找到与其完全对应的波函数
 
 $\phi(x,\frac{2\pi}{a}+\frac{2\pi}{3a})=...+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{2\pi}{a})x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{4\pi}{a})x}+...=...+c_{\frac{2\pi}{3a}} e^{i(\frac{2\pi}{3a})x}+c_{\frac{2\pi}{3a}+\frac{2\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{2\pi}{a})x}+c_{\frac{2\pi}{3a}+\frac{4\pi}{a}} e^{i(\frac{2\pi}{3a}+\frac{4\pi}{a})x}+.....=\phi(x,\frac{2\pi}{3a})$
 
 也就是说$\phi(x,k)$在k空间也有周期性，周期性为单位倒易矢量，或者说，具有如下性质(添加的这个n是能级)
 
-$\phi(x,n,k)=\phi(x,n,k+K*\frac{2\pi}{a})$
+$\phi(x,n,k)=\phi(x,n,k+K)$
 
 这就使得其本征值（能量）以及block theorem中的u(x,k)同样具有这个性质
 
-$\epsilon(n,k)=\epsilon(n,k+K*\frac{2\pi}{a})$
-$u(x,k)=u(x,k+K*\frac{2\pi}{a})$
+$\epsilon(n,k)=\epsilon(n,k+K)$
+$u(x,k)=u(x,k+K)$
 
-## <a name="32">k point取样</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+
+## <a name="33">k point取样</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 继续考虑一维情况，已知从x到q有傅里叶变换 
 $n(q)=\frac{1}{\Omega_{crystal}}\int_{\Omega_{crystal}} dxn(x)exp(iq·x)$
@@ -749,7 +772,7 @@ $n(x)=\frac{1}{\Omega_{k space}}\int_{\Omega_{k space}} dqn(q)exp(ix·q)$这个�
 
 那么可以将积分用取样点离散化
 
-### <a name="33">trapezoidal method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="34">trapezoidal method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 trepezoidal 方式拟合积分公式，对区域内进行均匀取样
 $\int _{-1}^1f(x)dx \approx \frac{1}{n}[f(-1)+2\sum_{j=1}^{n-1}f(x_j)+f(1)]$
 
@@ -757,7 +780,7 @@ $\int _{-1}^1f(x)dx \approx \frac{1}{n}[f(-1)+2\sum_{j=1}^{n-1}f(x_j)+f(1)]$
 
 $\int _{-1}^1f(x)dx \approx 0.25f(-1)+0.25f(-0.5)+0.25f(0)+0.25(0.5)+0.25(1)$
 
-### <a name="34">Gaussian quadrature</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="35">Gaussian quadrature</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 $\int _{-1}^1f(x)dx \approx 0.25f(-1)+0.25f(-0.5)+0.25f(0)+0.25(0.5)+0.25(1)$可以转为如下公式，此时取样点是不均匀分布的
 
@@ -765,22 +788,105 @@ $\int _{-1}^1f(x)dx \approx \sum_{j=1}^n c_j f(x_j)$
 
 不均匀分布的取样点是Gaussian quadrature，$c_j$是系数，由Gaussian quadrature来规定。
 
+# <a name="36">Hubbard model</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+## <a name="37">DFT+U</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+ref: _correlated electrons in quantum matter_
+
+LDA计算结果准确的前提是其电子有效质量$m^* \approx  m^e$，然而对于strong correlated electron (heavy quasiparticles)时候$m^* >> m^e$,导致结果不准确
+
+对于d和f电子，需要有U参数，这个U参数使得：在向d或者f shell添加电子时，所需要能量要远大于fermi energy。这是由于其他d或者f电子的排斥产生的。
+
+### <a name="38">U参数计算方式</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+假设在一个site上面有n个电子，这n个电子之间会互相排斥。这个排斥的能量是
+$$E(n)=\frac{n(n-1)}{2}U$$
+
+可以用以下方法通过LDA来计算U参数：
+设定“the hybridization matrix elements of the atomic like d orbitals with the surroundings, equal to zero”。然后，在一次计算中固定d电子数量$n_{d_0}$，然后让其他电子relax并计算其能量。在下一次计算中固定d电子数量为$n_{d_0}+1$，计算能量。因为$U=E(n+1)+E(n-1)-2E(n) \approx \frac{d^2E(n_d)}{d_{n_d}^2}$，所以通过改变$n_d$并计算$E(n_d)$对$n_d$的二阶导，可以得到U的值。这个值是6~8eV
+
+### <a name="39">U parameter meaning(translated)</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+The U parameter is working as: Additional energy required to add electron to d or f shell for the transitional metals due to the mutual expulsion by other d or f electrons. 
+
+one way to calculate the U parameter: from the equation $U=E(n+1)+E(n-1)-2E(n) \approx \frac{d^2E(n_d)}{d_{n_d}^2}$
+
+For each run: the number of d(or f shell) electron is fixed and calculate the energy. By varying the d electron, calculate the relation between DFT energy and the number of d electron: $U=\frac{d^2E(n_d)}{d_{n_d}^2}$
+
+some other methods: machine learning
+
+
+# <a name="40">DFT 实践</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+## <a name="41">压缩模量 bulk modulus</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+通过更改晶格常数得到不同的E可以计算压缩模量B
+
+$$B=V^2\frac{d^2E_{DFT}}{dV^2}$$
+
+实际操作上也有一些其他公式来计算，比如Birch-Murnaghan equation 
+
+$$E_{tot}(a)=E_0+\frac{9V_0B_0}{16}\{[(\frac{a_0}a)^2-1]^3 \frac{dB}{dP}|_T +[(\frac{a_0}a)^2-1)]^2[(6-4(\frac{a_0}a)^2]\}$$
 
 
 
+## <a name="42">分析表面-slab models</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+surface是二维结构而dft是三维计算。因此建立一个在z方向有多个重复周期，但只有部分重复周期有原子的supercell（比如说是$1*1*8$的supercell，1~5层有原子，用于分析表面5层的性质，其余3层没有原子（vaccum space）使得此处电子密度约等于0），由此在分析其周期性时z方向上的supercell之间没有相互作用。 
 
 
+## <a name="43">kpoint的数量</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+对于$1*1*1$的supercell和$1*2*10$的supercell所需要的kpoint是不一样的。保证两者的kpoint在空间中的密度接近即可，比如前者要$10*10*10$的kpoint，后者要$10*5*1$即可
+
+## <a name="44">energy cutoff</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+k对应的波函数$\phi(x,k)=e^{ikx}\sum _K c_{k+K} e^{iKx}$。此电子波函数所对应的能量本征值为$E=\frac{\hbar}{2m}|k+K|^2$，由于K是任意倒易单位矢量，所以E有无数多个，但是显然只有较低能量的是有效的（电子不会占用高能量）。所以设定了cutoff使得
+$$E_{cutoff}=\frac{\hbar}{2m}G_{cut}^2$$
+这样对于给定的cutoff，可以得到k的新的波函数
+$\phi(x,k)=e^{ikx}\sum _{|k+K|<G_{cut}} c_{k+K} e^{iKx}$
+
+### <a name="45">hard and soft psudopotential</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+不同的赝势所需要的cutoff不一样，hard pseudopotential需要设定高的energy cutoff，soft pseudopotential只需要比较小的cutoff。目前用的应该都是ultrasoft pseudopotential
+
+## <a name="46">optimization method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+比如在寻找晶格常数的时候，DFT进行的是optimization，寻找能量最低时候所对应的晶格常数。另外，能量的极小值等同于导数等于0。所以寻找导数等于0的点是等效的
+### <a name="47">bisection method </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+二分法进行递归寻找
+
+### <a name="48">newton method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+对于一维情况，假如说能量是晶格常数x的函数f(x)。通过newton method寻找能量最低值，亦或者说$f'(x)=0$的方法是：
+
+对$f'(x)$进行泰勒展开得到
+$$f'(x+dx)\approx f'(x)+dxf''(x)$$
+令dx=h时$f'(x+h)\approx f'(x)+hf''(x)=0$
+从而得到$f'(x)\approx 0$的x的计算方法：
+$$x^*=x+h=x-\frac{f'(x)}{f''(x)}$$
+得到$x^*$后代会x进行迭代计算。此方法收敛速度快于bisection
+
+对于三维情形，newton method过于复杂无法操作。对于含有N个原子的晶胞，$\frac{f'(x)}{f''(x)}$会变成一个3Nx3N的矩阵
+### <a name="49">quasi-newton method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+quasi newton method 中，将f''()的矩阵换成了一个估算的A矩阵
+$$a_1,b_1,c_1=a_0,b_0,c_0-\frac{E'(a,b,c)}{A_1}$$
+其中
+$$A_1=A_0+F[a_1,b_1,c_1,G(a_1,b_1,c_1),E'(a_0,b_0,c_0)]$$
+在不同的quasi newton方法中F[]是不一样的，取决于算法的规定。
+
+### <a name="50">conjugate-gradient method/steepest descent method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+是不停的向f'(x)移动的算法
+
+initial guess:$(a_0,b_0,c_0)$
+
+1st guess:$(a_1,b_1,c_1)=(a_0,b_0,c_0)-\alpha_0d_0$
+$$d_0= (-\frac{dE(a,b,c)}{da},
+-\frac{dE(a,b,c)}{db},-\frac{dE(a,b,c)}{dc})|_{(a_0,b_0,c_0)}$$
+
+2nd guess:$(a_2,b_2,c_2)=(a_1,b_1,c_1)+\alpha_1d_1$ 
 
 
+$$d_1=(-\frac{dE(a,b,c)}{da},-\frac{dE(a,b,c)}{db},-\frac{dE(a,b,c)}{dc})|_{(a_1,b_1,c_1)}+\frac{(-\frac{dE(a,b,c)}{da},-\frac{dE(a,b,c)}{db},-\frac{dE(a,b,c)}{dc})|_{(a_1,b_1,c_1)}·d_0}{d_0·d_0} (\frac{dE(a,b,c)}{da},\frac{dE(a,b,c)}{db},\frac{dE(a,b,c)}{dc})|_{(a_0,b_0,c_0)}$$
 
 
-
-
-
-
-
-
-## <a name="35">reference book 参考书</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="51">reference book 参考书</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 David S. Sholl, _Density functional Theory_
 
@@ -788,7 +894,7 @@ Kittel, _solid state physics_
 
 Dehoff _Thermodynamics_
 
-
+Peter Fulde _Correlated Electrons in Quantum Matter_
 
 
 
@@ -796,9 +902,9 @@ Dehoff _Thermodynamics_
 ```markdown
 Syntax highlighted code block
 
-# <a name="36">Header 1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-## <a name="37">Header 2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-### <a name="38">Header 3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="52">Header 1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="53">Header 2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="54">Header 3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 - Bulleted
 - List
@@ -811,12 +917,3 @@ Syntax highlighted code block
 [Link](url) and ![Image](src)
 ```
 
-For more details see [GitHub Flavored Markdown](https://guides.github.com/features/mastering-markdown/).
-
-### <a name="39">Jekyll Themes</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-
-Your Pages site will use the layout and styles from the Jekyll theme you have selected in your [repository settings](https://github.com/lamdalamda/vasp_sudy_note/settings/pages). The name of this theme is saved in the Jekyll `_config.yml` configuration file.
-
-### <a name="40">Support or Contact</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-
-Having trouble with Pages? Check out our [documentation](https://docs.github.com/categories/github-pages-basics/) or [contact support](https://support.github.com/contact) and we’ll help you sort it out.
