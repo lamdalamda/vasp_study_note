@@ -1,5 +1,3 @@
-本文主要是
-
 
 
 
@@ -16,7 +14,34 @@
 
 _https://katex.org/docs/autorender.html_
 
-# DFT Theory
+# VASP 问题
+记录跑vasp时候出现的各种问题
+
+## Error
+### Inconsistent Bravais lattice types fond for crystalline and reciprocal lattice
+vasp.out输出：
+```
+Inconsistent Bravais lattice types found for crystalline and            |
+|     reciprocal lattice:                                                     |
+|                                                                             |
+|        Crystalline: base-centered monoclinic                                |
+|        Reciprocal : triclinic                                               |
+|                    (instead of base-centered monoclinic)                    |
+|                                                                             |
+|     In most cases this is due to inaccuracies in the specification of       |
+|     the crytalline lattice vectors.                                         |
+|                                                                             |
+|     Suggested SOLUTIONS:                                                    |
+|      ) Refine the lattice parameters of your structure,                     |
+|      ) and/or try changing SYMPREC.                                 
+```
+这个问题发生在211006warmup/results/initial_run/75_perc/Ca6Ti4Si6O24_0中,此项目为首先对晶体进行relax，然后用relax的结构进行重新计算。在重新计算时发生这个错误，这个是由于移除了晶体中的部分离子导致relax之后的结构失去了对称性？
+
+
+解决办法：在INCAR中加入SYMPREC=1e-08，问题解决
+
+
+# DFT Theory 密度泛函计算基本理论
  latex test docs index
 
 
@@ -759,6 +784,7 @@ For each run: the number of d(or f shell) electron is fixed and calculate the en
 
 some other methods: machine learning
 
+There is also a J term for the spin states. The J depends on whether the two spins are parallel or antiparallel.
 
 # DFT 实践
 
@@ -828,6 +854,8 @@ $$d_0= (-\frac{dE(a,b,c)}{da},
 
 
 $$d_1=(-\frac{dE(a,b,c)}{da},-\frac{dE(a,b,c)}{db},-\frac{dE(a,b,c)}{dc})|_{(a_1,b_1,c_1)}+\frac{(-\frac{dE(a,b,c)}{da},-\frac{dE(a,b,c)}{db},-\frac{dE(a,b,c)}{dc})|_{(a_1,b_1,c_1)}·d_0}{d_0·d_0} (\frac{dE(a,b,c)}{da},\frac{dE(a,b,c)}{db},\frac{dE(a,b,c)}{dc})|_{(a_0,b_0,c_0)}$$
+
+
 
 
 # reference book 参考书

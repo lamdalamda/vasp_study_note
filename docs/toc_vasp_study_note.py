@@ -5,6 +5,8 @@
 import sys
 import os
 import time
+import codecs
+import markdown2
 
 headline = ['#','##','###','####','#####','######']
 lines_in_file = []
@@ -95,3 +97,6 @@ if __name__=='__main__':
     else:
         msg = "未找到文件"
         print(msg)
+    
+
+    
