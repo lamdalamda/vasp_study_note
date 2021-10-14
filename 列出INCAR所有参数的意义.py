@@ -1,1 +1,0 @@
-from pymatgen.io.vasp.help import VaspDoc
