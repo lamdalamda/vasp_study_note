@@ -184,9 +184,31 @@ $V_{XC}(r)=V^{electron gas}_{XC}[n(r)]$
 
 Use local electron density and the local gradient in the electron density calculation
 
-局部电子密度，和局部电子密度的梯度
+GGA泛函是局部电子密度，和局部电子密度的梯度的函数
+
+$$V_{XC}^{GGA}(r)=V_{XC}[n(r),\nabla n(r)]$$
+
+一维下：
+
+$$V_{XC}^{GGA}(x)=V_{XC}[n(x),\frac{dn(x)}{dx}]$$
 
 主流有：PW91 和 PBE
+由于包括了电子密度一阶导项，所以一般认为GGA会比LDA更加准确，但是也有例外，比如在计算过渡金属的表面能的时候
+
+### meta-GGA
+
+在GGA基础上，还会包含二阶导的信息。实际操作上，二阶导是使用了kinetic energy density of the Kohn Sham orbital:
+
+
+$$\tau(r)=0.5\sum_{occupied states}|\nabla\phi(r)|^2$$
+
+泛函形式是：
+$$V_{XC}^{meta-GGA}[n(r),\nabla n(r),\tau(r)]$$
+
+### hyper-GGA
+
+看不太懂啥意思，形式更加复杂，包含了部分真实Exc项，但是只有在计算小分子时候效果好，在计算bulk material时候不太行的
+
 
 ## 寻找合适的波函数-hartree fock
 

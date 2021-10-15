@@ -14,49 +14,51 @@
 &emsp;<a href="#12">寻找合适的$E_{XC}$泛函</a>  
 &emsp;&emsp;<a href="#13">LDA近似：计算Exc的一种方式</a>  
 &emsp;&emsp;<a href="#14">GGA</a>  
-&emsp;<a href="#15">寻找合适的波函数-hartree fock</a>  
-&emsp;&emsp;<a href="#16">单个电子与多电子的波函数</a>  
-&emsp;&emsp;<a href="#17">Hartree product</a>  
-&emsp;&emsp;<a href="#18">hartree fock calculation </a>  
-&emsp;&emsp;<a href="#19">DFT计算过程总结</a>  
-&emsp;&emsp;<a href="#20">Exc</a>  
-&emsp;<a href="#21">一些补充</a>  
-&emsp;<a href="#22">物质的性质： property of matters</a>  
-&emsp;&emsp;<a href="#23">bonding：</a>  
-&emsp;&emsp;<a href="#24">Hartree atomic units</a>  
-<a href="#25">晶体学知识 crystallography</a>  
-&emsp;<a href="#26">fourier transformation</a>  
-&emsp;<a href="#27">reciprocal sapce 倒易空间</a>  
-&emsp;&emsp;<a href="#28">一维理解</a>  
-&emsp;&emsp;<a href="#29">倒空间的有意义的点q需要满足的条件</a>  
-&emsp;&emsp;<a href="#30">一维小晶体的倒空间与布里渊区</a>  
-&emsp;&emsp;<a href="#31">三维大晶体的倒空间与布里渊区</a>  
-&emsp;<a href="#32">bloch theorem的推导</a>  
-&emsp;&emsp;<a href="#33">bloch theorem第一种证明</a>  
-&emsp;&emsp;<a href="#34">bloch theorem的第二种证明</a>  
-&emsp;&emsp;&emsp;<a href="#35">block theorem单电子波函数的本征值和周期性</a>  
-&emsp;<a href="#36">k point取样</a>  
-&emsp;&emsp;<a href="#37">trapezoidal method</a>  
-&emsp;&emsp;<a href="#38">Gaussian quadrature</a>  
-<a href="#39">Hubbard model</a>  
-&emsp;<a href="#40">DFT+U</a>  
-&emsp;&emsp;<a href="#41">U参数计算方式</a>  
-&emsp;&emsp;<a href="#42">U parameter meaning(translated)</a>  
-<a href="#43">DFT 实践</a>  
-&emsp;<a href="#44">压缩模量 bulk modulus</a>  
-&emsp;<a href="#45">分析表面-slab models</a>  
-&emsp;<a href="#46">kpoint的数量</a>  
-&emsp;<a href="#47">energy cutoff</a>  
-&emsp;&emsp;<a href="#48">hard and soft psudopotential</a>  
-&emsp;<a href="#49">optimization method</a>  
-&emsp;&emsp;<a href="#50">bisection method </a>  
-&emsp;&emsp;<a href="#51">newton method</a>  
-&emsp;&emsp;<a href="#52">quasi-newton method</a>  
-&emsp;&emsp;<a href="#53">conjugate-gradient method/steepest descent method</a>  
-<a href="#54">reference book 参考书</a>  
-<a href="#55">Header 1</a>  
-&emsp;<a href="#56">Header 2</a>  
-&emsp;&emsp;<a href="#57">Header 3</a>  
+&emsp;&emsp;<a href="#15">meta-GGA</a>  
+&emsp;&emsp;<a href="#16">hyper-GGA</a>  
+&emsp;<a href="#17">寻找合适的波函数-hartree fock</a>  
+&emsp;&emsp;<a href="#18">单个电子与多电子的波函数</a>  
+&emsp;&emsp;<a href="#19">Hartree product</a>  
+&emsp;&emsp;<a href="#20">hartree fock calculation </a>  
+&emsp;&emsp;<a href="#21">DFT计算过程总结</a>  
+&emsp;&emsp;<a href="#22">Exc</a>  
+&emsp;<a href="#23">一些补充</a>  
+&emsp;<a href="#24">物质的性质： property of matters</a>  
+&emsp;&emsp;<a href="#25">bonding：</a>  
+&emsp;&emsp;<a href="#26">Hartree atomic units</a>  
+<a href="#27">晶体学知识 crystallography</a>  
+&emsp;<a href="#28">fourier transformation</a>  
+&emsp;<a href="#29">reciprocal sapce 倒易空间</a>  
+&emsp;&emsp;<a href="#30">一维理解</a>  
+&emsp;&emsp;<a href="#31">倒空间的有意义的点q需要满足的条件</a>  
+&emsp;&emsp;<a href="#32">一维小晶体的倒空间与布里渊区</a>  
+&emsp;&emsp;<a href="#33">三维大晶体的倒空间与布里渊区</a>  
+&emsp;<a href="#34">bloch theorem的推导</a>  
+&emsp;&emsp;<a href="#35">bloch theorem第一种证明</a>  
+&emsp;&emsp;<a href="#36">bloch theorem的第二种证明</a>  
+&emsp;&emsp;&emsp;<a href="#37">block theorem单电子波函数的本征值和周期性</a>  
+&emsp;<a href="#38">k point取样</a>  
+&emsp;&emsp;<a href="#39">trapezoidal method</a>  
+&emsp;&emsp;<a href="#40">Gaussian quadrature</a>  
+<a href="#41">Hubbard model</a>  
+&emsp;<a href="#42">DFT+U</a>  
+&emsp;&emsp;<a href="#43">U参数计算方式</a>  
+&emsp;&emsp;<a href="#44">U parameter meaning(translated)</a>  
+<a href="#45">DFT 实践</a>  
+&emsp;<a href="#46">压缩模量 bulk modulus</a>  
+&emsp;<a href="#47">分析表面-slab models</a>  
+&emsp;<a href="#48">kpoint的数量</a>  
+&emsp;<a href="#49">energy cutoff</a>  
+&emsp;&emsp;<a href="#50">hard and soft psudopotential</a>  
+&emsp;<a href="#51">optimization method</a>  
+&emsp;&emsp;<a href="#52">bisection method </a>  
+&emsp;&emsp;<a href="#53">newton method</a>  
+&emsp;&emsp;<a href="#54">quasi-newton method</a>  
+&emsp;&emsp;<a href="#55">conjugate-gradient method/steepest descent method</a>  
+<a href="#56">reference book 参考书</a>  
+<a href="#57">Header 1</a>  
+&emsp;<a href="#58">Header 2</a>  
+&emsp;&emsp;<a href="#59">Header 3</a>  
 
 
 
@@ -243,21 +245,43 @@ $V_{XC}(r)=V^{electron gas}_{XC}[n(r)]$
 
 Use local electron density and the local gradient in the electron density calculation
 
-局部电子密度，和局部电子密度的梯度
+GGA泛函是局部电子密度，和局部电子密度的梯度的函数
+
+$$V_{XC}^{GGA}(r)=V_{XC}[n(r),\nabla n(r)]$$
+
+一维下：
+
+$$V_{XC}^{GGA}(x)=V_{XC}[n(x),\frac{dn(x)}{dx}]$$
 
 主流有：PW91 和 PBE
+由于包括了电子密度一阶导项，所以一般认为GGA会比LDA更加准确，但是也有例外，比如在计算过渡金属的表面能的时候
 
-## <a name="15">寻找合适的波函数-hartree fock</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="15">meta-GGA</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+在GGA基础上，还会包含二阶导的信息。实际操作上，二阶导是使用了kinetic energy density of the Kohn Sham orbital:
+
+
+$$\tau(r)=0.5\sum_{occupied states}|\nabla\phi(r)|^2$$
+
+泛函形式是：
+$$V_{XC}^{meta-GGA}[n(r),\nabla n(r),\tau(r)]$$
+
+### <a name="16">hyper-GGA</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+
+看不太懂啥意思，形式更加复杂，包含了部分真实Exc项，但是只有在计算小分子时候效果好，在计算bulk material时候不太行的
+
+
+## <a name="17">寻找合适的波函数-hartree fock</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 泛函在前文已经基本找好了，这里介绍找波函数的过程
 
 当不考虑Exc时候，可以对KohnSham方程进行比较好的计算：
 
-### <a name="16">单个电子与多电子的波函数</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="18">单个电子与多电子的波函数</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 对于单个电子，其波函数是localized的，可以用类似于$y=e^{-x^2}$描述，没有周期性，且在远离x=0的地方y约为0。但是对于晶体等多电子体系，应该使用周期性的波函数，比如$y=sin^2(x)$
 
-### <a name="17">Hartree product</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="19">Hartree product</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 当总共只有一个电子时候，
 
 $h\Chi=E\Chi$
@@ -306,7 +330,7 @@ $$\phi(x_1,x_2)=\frac{1}{\sqrt2}[\Chi_j(x_1)\Chi_k(x_2)-\Chi_k(x_1)\Chi_j(x_2)]$
 
 这个波函数满足pauli exclusiong principle：不区分电子， 当电子具有相同坐标时等于0
 
-### <a name="18">hartree fock calculation </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="20">hartree fock calculation </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 hartree fock calculation 基于这个假设；原子核位置固定
 
@@ -344,7 +368,7 @@ $\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_
 
 这个值虽然精确，但并不是实际的电子能量， 因为没有考虑到Exc，即Hartree fock方法实际上并没有解决电子-电子相互作用
 
-### <a name="19">DFT计算过程总结</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="21">DFT计算过程总结</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 结合上文Kohn sham 方程计算，完整的DFT计算过程如下：
 
@@ -362,17 +386,17 @@ $\Chi_1(x)=\alpha_{1,1}\phi_{1}(x)+\alpha_{1,2}\phi_{2}(x)+...+\alpha_{1,K}\phi_
 
 6，得到的$\alpha_{j,i}$代回第二步
 
-### <a name="20">Exc</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="22">Exc</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 Electron correlation energy = True system energy - Hartree fock limit.
 
 即Exc就是实际的能量减去Hartree fock limit
 
 
-## <a name="21">一些补充</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="23">一些补充</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 参考书：Richard M. Martin _Electronic structure: Basic theory and practical method_
 
-## <a name="22">物质的性质： property of matters</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="24">物质的性质： property of matters</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 物质属性一般会取决于两个种类：
 1、electronic ground state 基态电子
@@ -384,7 +408,7 @@ Electron correlation energy = True system energy - Hartree fock limit.
 电子最低能量态决定了原子核的结构
 the lowest energy state of the elctrons determines the spatial structure of nuclei:
 
-### <a name="23">bonding：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="25">bonding：</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 一般认为分为5类：
 closed shell system:稀有气体
 ionic
@@ -394,13 +418,13 @@ hydrogen:比较特殊，因为氢原子是唯一没有core electron的 （往上
 
 实际材料的bonding一般是这五种的结合
 
-### <a name="24">Hartree atomic units</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="26">Hartree atomic units</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 $\hbar =m_e = e = 4\pi /\epsilon_0 = 1$
 
 定义以上单位为1，用来简化计算
 
-# <a name="25">晶体学知识 crystallography</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="27">晶体学知识 crystallography</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 参考书：Richard M. Martin _Electronic structure: Basic theory and practical method_
 
@@ -416,7 +440,7 @@ _fcc 的 wigner seitz cell是bcc的first brillouin zone_
 
 
 
-## <a name="26">fourier transformation</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="28">fourier transformation</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ![Image](./Fourier_series_and_transform.gif)
 转载自 wikipedia
@@ -424,13 +448,13 @@ _fcc 的 wigner seitz cell是bcc的first brillouin zone_
 转载自_https://zhuanlan.zhihu.com/p/19763358_，这个讲的很清楚
 
 
-## <a name="27">reciprocal sapce 倒易空间</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="29">reciprocal sapce 倒易空间</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 考虑任何一个描述晶体性质的方程（比如说电子密度）
 
 由于晶体的周期性，在实空间电子密度是周期性相同的,也就是说对于电子密度$n(r+T(r'))=n(r)$其中T是任何的translation操作
 
-### <a name="28">一维理解</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="30">一维理解</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 对于一个一维的，总共三个晶格的晶体，晶格常数为a
 
@@ -484,7 +508,7 @@ $f(q)=\frac{1}{\Omega_{crystal}}\sum e^{iq·T} \int drf(r) e^{iq·r}$
 
 T是所有可能的平移（translation）操作
 
-### <a name="29">倒空间的有意义的点q需要满足的条件</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="31">倒空间的有意义的点q需要满足的条件</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 根据Born-Von Karmen条件，傅里叶变化后的每一个component都必须满足 $exp(i q·Na)=1$
 
@@ -496,7 +520,7 @@ $q·a=2\pi \frac{integer}{3}$
 
 N是一个很大的值，所以大晶体的q点是连续的
 
-### <a name="30">一维小晶体的倒空间与布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="32">一维小晶体的倒空间与布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 继续对于$q·a=2\pi \frac{integer}{3}$
 
@@ -548,7 +572,7 @@ q=0对应了基态
 
 **注意：这些是基态的条件**
 
-### <a name="31">三维大晶体的倒空间与布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="33">三维大晶体的倒空间与布里渊区</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 
 $n(x+x',y+y',z+z')=n(x,y,z)$，其中x' y' z'是整数倍的$a_1 a_2 a_3$
@@ -582,9 +606,9 @@ $G(m_1,m_2,m_3)=m_1b_1,m_2b_2,m_3b_3$
 
 其中$m_1,m_2,m_3$是任意整数，$b_1,b_2,b_3$是$a_1 a_2 a_3$的倒向量
 
-## <a name="32">bloch theorem的推导</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="34">bloch theorem的推导</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-### <a name="33">bloch theorem第一种证明</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="35">bloch theorem第一种证明</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 根据一通看不懂的证明（P87~P88, section 4.4 Richard M. Martin _Electronic structure: Basic theory and practical method_）
 
@@ -622,7 +646,7 @@ $\hat{H}\hat{T_x}=\hat{T_x}\hat{H}$
 
 
 
-### <a name="34">bloch theorem的第二种证明</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="36">bloch theorem的第二种证明</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 继续在之前的晶格常数为a总长度为3的一维晶体例子 
 
@@ -749,7 +773,7 @@ $\phi(x,\frac{2\pi}{a})=e^{i\frac{2\pi x}{a}}sin(x)$
 
 ![Image](./pic/pic2.jpg)
 
-#### <a name="35">block theorem单电子波函数的本征值和周期性</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+#### <a name="37">block theorem单电子波函数的本征值和周期性</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 
 对于bloch theorem 的 $\phi(x,k)=e^{ikx}u(x,k)$形式，求其能量
@@ -783,7 +807,7 @@ $u(x,k)=u(x,k+K)$
 
 
 
-## <a name="36">k point取样</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="38">k point取样</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 继续考虑一维情况，已知从x到q有傅里叶变换 
 $n(q)=\frac{1}{\Omega_{crystal}}\int_{\Omega_{crystal}} dxn(x)exp(iq·x)$
@@ -800,7 +824,7 @@ $n(x)=\frac{1}{\Omega_{k space}}\int_{\Omega_{k space}} dqn(q)exp(ix·q)$这个�
 
 那么可以将积分用取样点离散化
 
-### <a name="37">trapezoidal method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="39">trapezoidal method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 trepezoidal 方式拟合积分公式，对区域内进行均匀取样
 $\int _{-1}^1f(x)dx \approx \frac{1}{n}[f(-1)+2\sum_{j=1}^{n-1}f(x_j)+f(1)]$
 
@@ -808,7 +832,7 @@ $\int _{-1}^1f(x)dx \approx \frac{1}{n}[f(-1)+2\sum_{j=1}^{n-1}f(x_j)+f(1)]$
 
 $\int _{-1}^1f(x)dx \approx 0.25f(-1)+0.25f(-0.5)+0.25f(0)+0.25(0.5)+0.25(1)$
 
-### <a name="38">Gaussian quadrature</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="40">Gaussian quadrature</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 $\int _{-1}^1f(x)dx \approx 0.25f(-1)+0.25f(-0.5)+0.25f(0)+0.25(0.5)+0.25(1)$可以转为如下公式，此时取样点是不均匀分布的
 
@@ -816,9 +840,9 @@ $\int _{-1}^1f(x)dx \approx \sum_{j=1}^n c_j f(x_j)$
 
 不均匀分布的取样点是Gaussian quadrature，$c_j$是系数，由Gaussian quadrature来规定。
 
-# <a name="39">Hubbard model</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="41">Hubbard model</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-## <a name="40">DFT+U</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="42">DFT+U</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 ref: _correlated electrons in quantum matter_
 
@@ -826,14 +850,14 @@ LDA计算结果准确的前提是其电子有效质量$m^* \approx  m^e$，然�
 
 对于d和f电子，需要有U参数，这个U参数使得：在向d或者f shell添加电子时，所需要能量要远大于fermi energy。这是由于其他d或者f电子的排斥产生的。
 
-### <a name="41">U参数计算方式</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="43">U参数计算方式</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 假设在一个site上面有n个电子，这n个电子之间会互相排斥。这个排斥的能量是
 $$E(n)=\frac{n(n-1)}{2}U$$
 
 可以用以下方法通过LDA来计算U参数：
 设定“the hybridization matrix elements of the atomic like d orbitals with the surroundings, equal to zero”。然后，在一次计算中固定d电子数量$n_{d_0}$，然后让其他电子relax并计算其能量。在下一次计算中固定d电子数量为$n_{d_0}+1$，计算能量。因为$U=E(n+1)+E(n-1)-2E(n) \approx \frac{d^2E(n_d)}{d_{n_d}^2}$，所以通过改变$n_d$并计算$E(n_d)$对$n_d$的二阶导，可以得到U的值。这个值是6~8eV
 
-### <a name="42">U parameter meaning(translated)</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="44">U parameter meaning(translated)</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 The U parameter is working as: Additional energy required to add electron to d or f shell for the transitional metals due to the mutual expulsion by other d or f electrons. 
 
@@ -845,9 +869,9 @@ some other methods: machine learning
 
 There is also a J term for the spin states. The J depends on whether the two spins are parallel or antiparallel.
 
-# <a name="43">DFT 实践</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="45">DFT 实践</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
-## <a name="44">压缩模量 bulk modulus</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="46">压缩模量 bulk modulus</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 通过更改晶格常数得到不同的E可以计算压缩模量B
 
@@ -859,29 +883,29 @@ $$E_{tot}(a)=E_0+\frac{9V_0B_0}{16}\{[(\frac{a_0}a)^2-1]^3 \frac{dB}{dP}|_T +[(\
 
 
 
-## <a name="45">分析表面-slab models</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="47">分析表面-slab models</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 surface是二维结构而dft是三维计算。因此建立一个在z方向有多个重复周期，但只有部分重复周期有原子的supercell（比如说是$1*1*8$的supercell，1~5层有原子，用于分析表面5层的性质，其余3层没有原子（vaccum space）使得此处电子密度约等于0），由此在分析其周期性时z方向上的supercell之间没有相互作用。 
 
 
-## <a name="46">kpoint的数量</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="48">kpoint的数量</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 对于$1*1*1$的supercell和$1*2*10$的supercell所需要的kpoint是不一样的。保证两者的kpoint在空间中的密度接近即可，比如前者要$10*10*10$的kpoint，后者要$10*5*1$即可
 
-## <a name="47">energy cutoff</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="49">energy cutoff</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 k对应的波函数$\phi(x,k)=e^{ikx}\sum _K c_{k+K} e^{iKx}$。此电子波函数所对应的能量本征值为$E=\frac{\hbar}{2m}|k+K|^2$，由于K是任意倒易单位矢量，所以E有无数多个，但是显然只有较低能量的是有效的（电子不会占用高能量）。所以设定了cutoff使得
 $$E_{cutoff}=\frac{\hbar}{2m}G_{cut}^2$$
 这样对于给定的cutoff，可以得到k的新的波函数
 $\phi(x,k)=e^{ikx}\sum _{|k+K|<G_{cut}} c_{k+K} e^{iKx}$
 
-### <a name="48">hard and soft psudopotential</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="50">hard and soft psudopotential</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 不同的赝势所需要的cutoff不一样，hard pseudopotential需要设定高的energy cutoff，soft pseudopotential只需要比较小的cutoff。目前用的应该都是ultrasoft pseudopotential
 
-## <a name="49">optimization method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="51">optimization method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 比如在寻找晶格常数的时候，DFT进行的是optimization，寻找能量最低时候所对应的晶格常数。另外，能量的极小值等同于导数等于0。所以寻找导数等于0的点是等效的
-### <a name="50">bisection method </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="52">bisection method </a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 二分法进行递归寻找
 
-### <a name="51">newton method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="53">newton method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 对于一维情况，假如说能量是晶格常数x的函数f(x)。通过newton method寻找能量最低值，亦或者说$f'(x)=0$的方法是：
 
 对$f'(x)$进行泰勒展开得到
@@ -892,14 +916,14 @@ $$x^*=x+h=x-\frac{f'(x)}{f''(x)}$$
 得到$x^*$后代会x进行迭代计算。此方法收敛速度快于bisection
 
 对于三维情形，newton method过于复杂无法操作。对于含有N个原子的晶胞，$\frac{f'(x)}{f''(x)}$会变成一个3Nx3N的矩阵
-### <a name="52">quasi-newton method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="54">quasi-newton method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 quasi newton method 中，将f''()的矩阵换成了一个估算的A矩阵
 $$a_1,b_1,c_1=a_0,b_0,c_0-\frac{E'(a,b,c)}{A_1}$$
 其中
 $$A_1=A_0+F[a_1,b_1,c_1,G(a_1,b_1,c_1),E'(a_0,b_0,c_0)]$$
 在不同的quasi newton方法中F[]是不一样的，取决于算法的规定。
 
-### <a name="53">conjugate-gradient method/steepest descent method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="55">conjugate-gradient method/steepest descent method</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 是不停的向f'(x)移动的算法
 
@@ -917,7 +941,7 @@ $$d_1=(-\frac{dE(a,b,c)}{da},-\frac{dE(a,b,c)}{db},-\frac{dE(a,b,c)}{dc})|_{(a_1
 
 
 
-# <a name="54">reference book 参考书</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="56">reference book 参考书</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 David S. Sholl, _Density functional Theory_
 
@@ -933,9 +957,9 @@ Peter Fulde _Correlated Electrons in Quantum Matter_
 ```markdown
 Syntax highlighted code block
 
-# <a name="55">Header 1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-## <a name="56">Header 2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
-### <a name="57">Header 3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+# <a name="57">Header 1</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+## <a name="58">Header 2</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
+### <a name="59">Header 3</a><a style="float:right;text-decoration:none;" href="#index">[Top]</a>
 
 - Bulleted
 - List
