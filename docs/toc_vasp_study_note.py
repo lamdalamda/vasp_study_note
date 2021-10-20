@@ -53,7 +53,7 @@ def creat_directory(f):
 """以目录列表为参数生成添加目录的文件"""
 def creat_file_with_toc(f):
     directory = creat_directory(f)
-    file_with_toc = r"./docs/index.md"
+    file_with_toc = r"./index.md"
     if os.path.exists(file_with_toc):
         is_delete=input("存在index.md，如果删除请直接按回车")
         if is_delete=="":
@@ -69,7 +69,7 @@ def creat_file_with_toc(f):
         print('文件名重复，请修改文件'+'file_with_toc.md'+'的文件名后重试')
 
 if __name__=='__main__':
-    file_name = './docs/index_no_toc.md'
+    file_name = './index_no_toc.md'
     #如果未传入文件名
     '''
     if len(sys.argv) < 2:
