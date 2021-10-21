@@ -197,7 +197,7 @@ $E_{known}[\phi_0(x)]=\frac{-\hbar}{m}\Sigma\int\phi_0^*(x)\phi_0''(x)dx+\int V(
 
 $E[2\Sigma \phi_i^*(r)\phi_i(r)]=E_{known}[2\Sigma \phi_i^*(r)\phi_i(r)]+E_{unknown}[2\Sigma \phi_i^*(r)\phi_i(r)]$
 
-也就是说电子密度的泛函的形式与博函数相同，是： 
+也就是说电子密度的泛函的形式与波函数相同，是： 
 $E[]=E_{known}[]+E_{unknown}[]$
 
 问题：解不出来电子密度n(r)因此需要kohn sham 方程解n(r)
